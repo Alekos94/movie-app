@@ -6,7 +6,6 @@ import './HomePageMovie.css'
 
 export function HomePageMovie({title, poster_path, vote_average, release_date,}: GeneralMovie) {
 const ratingColor = defineRatingColor(formatRating(vote_average))
-console.log(ratingColor)
   return (
     <>
       <div className="movieContainer">

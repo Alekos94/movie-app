@@ -8,3 +8,9 @@ export type GeneralMovie = {
   poster_path: string
 }
 
+export type HomePageLoaderData = {
+  topRatedMoviesList: GeneralMovie[];
+  popularMoviesList: GeneralMovie[];
+  upcomingMoviesList: GeneralMovie[];
+}
+
