@@ -1,0 +1,80 @@
+import { GeneralMovie, HomePageLoaderData } from "../../types/Movies"
+import "./Home.css"
+import {useLoaderData, useNavigate } from "react-router"
+import { fetchMovieListWithAuth } from "../../utils/fetchMovieListWithAuth"
+import { MovieList } from "../../components/MovieListComponent/MovieList"
+import { useRef } from "react"
+
+export function Home() {
+  const searchTermRef = useRef<HTMLInputElement>(null)
+  const navigate = useNavigate()
+  const { topRatedMoviesList, popularMoviesList, upcomingMoviesList } =
+    useLoaderData<HomePageLoaderData>()
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    if (searchTermRef.current) {
+      const query = searchTermRef.current.value.trim()
+      navigate(`search?query${query}`)
+    }
+  }
+  return (
+    //Improvements
+    //add loading indicator  (aka a spinner or skeleton loader) React Router lets you define <Suspense> + lazy() or even a global pending state.
+    //handle error weith new Response, errorElement in react Router
+    <>
+      <div className="searchBar">
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="movieSearch">
+            Hundrends of movies and TV shows for you to discover
+          </label>
+          <input
+            type="text"
+            id="movieSearch"
+            name="movieSearch"
+            placeholder="Search for a movie, tv show... "
+            ref={searchTermRef}
+          />
+          <button type="submit">Search</button>
+        </form>
+      </div>
+      <div className="moviesLists">
+        <MovieList title={"What's popular"} list={popularMoviesList} />
+        <MovieList title={"Coming Soon"} list={upcomingMoviesList} />
+        <MovieList title={"Must-Watch"} list={topRatedMoviesList} />
+      </div>
+    </>
+  )
+}
+
+export async function homePageLoader({ request }: { request: Request }) {
+  try {
+    const [popularRes, upcomingRes, topRatedRes] = await Promise.all([
+      fetchMovieListWithAuth("popular", request.signal),
+      fetchMovieListWithAuth("upcoming", request.signal),
+      fetchMovieListWithAuth("top_rated", request.signal),
+    ])
+
+    if (!popularRes.ok || !upcomingRes.ok || !topRatedRes.ok) {
+      throw new Error("Error with fetching the data")
+    }
+    //here need to work with the types of Promise.all
+    const [popularData, upcomingData, topRatedData]: {
+      results: GeneralMovie[]
+    }[] = await Promise.all([
+      popularRes.json(),
+      upcomingRes.json(),
+      topRatedRes.json(),
+    ])
+
+    const popularMoviesList = popularData.results
+    const upcomingMoviesList = upcomingData.results
+    const topRatedMoviesList = topRatedData.results
+
+    return { popularMoviesList, upcomingMoviesList, topRatedMoviesList }
+  } catch (e) {
+    if (e instanceof Error) {
+      console.log(e.message)
+    }
+  }
+}
