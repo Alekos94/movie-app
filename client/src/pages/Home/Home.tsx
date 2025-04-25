@@ -8,14 +8,13 @@ import { useRef } from "react"
 export function Home() {
   const searchTermRef = useRef<HTMLInputElement>(null)
   const navigate = useNavigate()
-  const { topRatedMoviesList, popularMoviesList, upcomingMoviesList } =
-    useLoaderData<HomePageLoaderData>()
+  const { topRatedMoviesList, popularMoviesList, upcomingMoviesList } = useLoaderData<HomePageLoaderData>()
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (searchTermRef.current) {
+    if (searchTermRef.current !== null) {
       const query = searchTermRef.current.value.trim()
-      navigate(`search?query${query}`)
+      navigate(`search?movieSearch=${query}`)
     }
   }
   return (
