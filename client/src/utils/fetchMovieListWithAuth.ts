@@ -23,3 +23,16 @@ export function fetchSearchResultWithAuth (searchKeyword: string, signal: AbortS
     signal
   })
 }
+
+export function fetchMovieDetails (movieId: string, signal: AbortSignal) {
+  const key: string = import.meta.env.VITE_SECRET
+  const baseUrl: string = import.meta.env.VITE_BASEURL_MOVIE_LISTS
+
+  return fetch(`${baseUrl}${movieId}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${key}`,
+    },
+    signal
+  })
+}

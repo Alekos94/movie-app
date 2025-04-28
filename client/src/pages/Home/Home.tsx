@@ -17,6 +17,7 @@ export function Home() {
       navigate(`search?movieSearch=${query}`)
     }
   }
+  console.log(popularMoviesList)
   return (
     //Improvements
     //add loading indicator  (aka a spinner or skeleton loader) React Router lets you define <Suspense> + lazy() or even a global pending state.

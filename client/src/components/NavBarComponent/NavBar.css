@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+.navBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(20, 20, 20);
+  padding: 1.5rem 3rem;
+  margin-bottom: 1.5rem;
+  position: sticky;
+}
+
+.navigationSection {
+  display: flex;
+  align-items: center;
+}
+
+.navLinks {
+  display: flex;
+  list-style: none;
+  outline: none;
+  gap: 1rem;
+}
+
+.navLinks a {
+  text-decoration: none;
+  color: inherit;
+  color:#d1cece;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.navLinks a:hover {
+  color:#F57C00;
+  text-decoration: underline;
+}
+
+
+.loginSection {
+  display: flex;
+  gap: 0.5em;
+}
+
+.logo {
+  font-size: 1.75rem;
+  font-family: 'Luckiest Guy', cursive;
+  font-weight: bold;
+  background: linear-gradient(45deg, #fffb00, #ff7300, #f50000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  }

@@ -1,14 +1,17 @@
+import { useNavigate } from "react-router"
 import { GeneralMovie } from "../../types/Movies"
 import { defineRatingColor } from "../../utils/defineRatingColor"
 import { formatRating } from "../../utils/formatRating"
 import './HomePageMovie.css'
 
 
-export function HomePageMovie({title, poster_path, vote_average, release_date,}: GeneralMovie) {
+export function HomePageMovie({title, poster_path, vote_average, release_date, id}: GeneralMovie) {
 const ratingColor = defineRatingColor(formatRating(vote_average))
+const navigate = useNavigate()
+
   return (
     <>
-      <div className="movieContainer">
+      <div onClick={() => navigate(`movie/${id}`, {})}className="movieContainer">
         <div className="moviePoster">
           <img src={`https://image.tmdb.org/t/p/w185${poster_path}`} />
         </div>

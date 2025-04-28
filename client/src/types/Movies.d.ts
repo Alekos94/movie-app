@@ -8,6 +8,13 @@ export type GeneralMovie = {
   poster_path: string
 }
 
+export type MovieDetails = GeneralMovie & {origin_country: string[]
+  genres: {id:number, name: string}[]
+  original_language: string
+  overview: string
+  runtime: number
+}
+
 export type HomePageLoaderData = {
   topRatedMoviesList: GeneralMovie[];
   popularMoviesList: GeneralMovie[];
