@@ -5,7 +5,7 @@ server/node_modules/
 client/dist/
 server/dist/
 
-# Environment variable files (optional if you're using .env files)
+# Environment variable files
 .env
 client/.env
 server/.env
