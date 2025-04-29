@@ -1,14 +1,21 @@
 import { GeneralMovie, HomePageLoaderData } from "../../types/Movies"
 import "./Home.css"
-import {useLoaderData, useNavigate } from "react-router"
+import { useLoaderData, useNavigate } from "react-router"
 import { fetchMovieListWithAuth } from "../../utils/fetchMovieListWithAuth"
 import { MovieList } from "../../components/MovieListComponent/MovieList"
-import { useRef } from "react"
+import { useRef, useState } from "react"
+
 
 export function Home() {
+  // const [selectedOption, setSelectedOption] = useState('movies')
+  // const [visible, setVisible] = useState(true);
+
+
   const searchTermRef = useRef<HTMLInputElement>(null)
   const navigate = useNavigate()
+
   const { topRatedMoviesList, popularMoviesList, upcomingMoviesList } = useLoaderData<HomePageLoaderData>()
+
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -17,7 +24,18 @@ export function Home() {
       navigate(`search?movieSearch=${query}`)
     }
   }
-  console.log(popularMoviesList)
+
+  // function handleToggle (option: string) {
+  //   if (option === selectedOption) return;
+  //   setVisible(false);
+
+  //   setTimeout(() => {
+  //     setSelectedOption(option);
+  //     setVisible(true);
+  //   }, 300); 
+  // };
+  
+
   return (
     //Improvements
     //add loading indicator  (aka a spinner or skeleton loader) React Router lets you define <Suspense> + lazy() or even a global pending state.
@@ -39,6 +57,14 @@ export function Home() {
         </form>
       </div>
       <div className="moviesLists">
+        {/* <div className="toggle-container">
+          <span className={selectedOption === 'movies' ? 'toggle-option selected' : 'toggle-option'} onClick={() => handleToggle('movies')}>Movies</span>
+          <span className={selectedOption === 'tv' ? 'toggle-option selected' : 'toggle-option'} onClick={() => handleToggle('tv')}>TV</span>
+        </div>
+        <div className={`fade-container ${visible ? 'visible' : 'hidden'}`}>
+        {selectedOption === 'movies' ? (<MovieList title={"What's popular"} list={popularMoviesList} />) : (<MovieList title={"Must-Watch"} list={topRatedMoviesList} />)}
+        </div> */}
+        {/* {selectedOption === 'movies' ? <MovieList title={"What's popular"} list={popularMoviesList} /> : <MovieList title={"Must-Watch"} list={topRatedMoviesList} />} */}
         <MovieList title={"What's popular"} list={popularMoviesList} />
         <MovieList title={"Coming Soon"} list={upcomingMoviesList} />
         <MovieList title={"Must-Watch"} list={topRatedMoviesList} />
@@ -58,7 +84,7 @@ export async function homePageLoader({ request }: { request: Request }) {
     if (!popularRes.ok || !upcomingRes.ok || !topRatedRes.ok) {
       throw new Error("Error with fetching the data")
     }
-    //here need to work with the types of Promise.all
+    
     const [popularData, upcomingData, topRatedData]: {
       results: GeneralMovie[]
     }[] = await Promise.all([

@@ -1,8 +1,43 @@
 * {
   box-sizing: border-box;
+  margin: 0;
 }
 
 .movieList {
   display: flex;
   gap: 0.5em;
+}
+
+.toggle-container {
+  display:inline-flex;
+  width: fit-content;
+  border: solid, #007bff, thin;
+  border-radius: 999999px;
+  overflow: hidden;
+}
+
+.toggle-option { 
+  flex: 1;
+  padding: 10px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: #007bff;
+  font-weight: 500;
+}
+
+.toggle-option.selected {
+  background-color: #007bff;
+  color: white;
+  border-radius: 999999em;
+}
+
+
+.fade-container {
+  transition: opacity 0.3s ease;
+  opacity: 1;
+}
+
+.fade-container.hidden {
+  opacity: 0;
 }

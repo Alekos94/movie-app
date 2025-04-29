@@ -13,6 +13,18 @@ export type MovieDetails = GeneralMovie & {origin_country: string[]
   original_language: string
   overview: string
   runtime: number
+  backdrop_path: string
+}
+
+export type FavoriteMovie = {
+  title: string
+  overview: string
+  tmdb_id: number
+  vote_average: number
+  genre_ids: number[]
+  release_date: string
+  user_average: number | null
+  poster_path: string
 }
 
 export type HomePageLoaderData = {

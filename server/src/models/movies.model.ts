@@ -26,9 +26,9 @@ const movieSchema = new mongoose.Schema({
     type: Number,
     default: null,
   },
-  isFavorite: {
-    type: Boolean,
-    default: false
+  poster_path: {
+    type: String,
+    required: true
   }
 })
 

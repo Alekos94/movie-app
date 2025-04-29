@@ -15,8 +15,8 @@ export async function getFavorites(request:Request, response:Response):Promise<v
 
 export async function addFavorite(request: Request<{}, {}, Movie>, response: Response): Promise<void> {
   try {
-    const {title,overview,tmdb_id,vote_average,genre_ids,release_date,user_average} = request.body
-    const newFavorite = await Favorites.create({title,overview,tmdb_id,vote_average,genre_ids,release_date,user_average, isFavorite: true})
+    const {title,overview,tmdb_id,vote_average,genre_ids,release_date,user_average,poster_path} = request.body
+    const newFavorite = await Favorites.create({title,overview,tmdb_id,vote_average,genre_ids,release_date,user_average,poster_path})
     response.status(201).json(newFavorite)
   } catch (e) {
     console.log(e)
@@ -26,8 +26,8 @@ export async function addFavorite(request: Request<{}, {}, Movie>, response: Res
 
 export async function removeFavorite(request:Request, response:Response): Promise<void> {
   try {
-    const id: string = request.body.id
-    const deletedFavorite = await Favorites.findByIdAndDelete(id)
+    const id: number = request.body.tmdb_id
+    const deletedFavorite = await Favorites.findOneAndDelete({tmdb_id:id})
     response.status(200).send(`${deletedFavorite} was deleted succesfully`)
   } catch (e) {
     console.log(e)

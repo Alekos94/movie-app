@@ -6,5 +6,5 @@ export type Movie = {
   genre_ids: number[]
   release_date: string
   user_average: number | null
-  isFavorite: boolean
+  poster_path: string
 }

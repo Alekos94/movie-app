@@ -13,9 +13,9 @@ imp
 .moviePoster img {
   border-radius: 0.3em;
 }
-
-
-
+.heart {
+  color: red;     
+}
 .movieRating {
   display: flex;
   align-items: center;
