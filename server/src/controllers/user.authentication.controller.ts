@@ -16,9 +16,9 @@ export async function registerUser(
       email,
       password: passwordHash,
     })
-    return response.status(201).json(newUser)
+     response.status(201).json(newUser)
   } catch (error: any) {
-    return response.status(400).json({ error: error.message })
+     response.status(400).json({ error: error.message })
   }
 }
 
@@ -31,17 +31,18 @@ export async function loginUser(
     const user = await Users.findOne({ email: email }).lean<User>()
 
     if (!user) {
-      return response.status(400).json({ error: "Invalid email" })
+       response.status(400).json({ error: "Invalid email" })
+    } else {
+      const match = await bcrypt.compare(password, user.password)
+      if (!match) {
+        response.status(400).json({ error: "Invalid password" })
+     }   
     }
+    
 
-    const match = await bcrypt.compare(password, user.password)
-
-    if (!match) {
-      return response.status(400).json({ error: "Invalid password" })
-    }
-    return response.status(200).json({ message: "Logged in successfully" })
+     response.status(200).json({ message: "Logged in successfully" })
   } catch (error: any) {
     console.error(error)
-    return response.status(500).json({ error: "Internal server error" })
+     response.status(500).json({ error: "Internal server error" })
   }
 }
