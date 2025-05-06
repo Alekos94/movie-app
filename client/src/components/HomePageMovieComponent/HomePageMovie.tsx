@@ -34,8 +34,8 @@ const isFavorite = favorites.some(favorite => favorite.tmdb_id === id);
         <div className={`movieRating ${ratingColor}`}><span className='rating'>{formatRating(vote_average)}</span><span className="percentageSymbol">%</span></div>
         <div className="movieTitle">{title}</div>
         <div className="movieReleaseDate">{release_date}</div>
-      </div>
       {isFavorite ? <div onClick={() => toggleFavorite(movie)}><FaHeart className="heart"/></div> : <div onClick={() => toggleFavorite(movie)}><FaRegHeart className="heart"/></div>}
+      </div>
     </>
   )
 }

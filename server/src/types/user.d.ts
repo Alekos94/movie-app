@@ -1,4 +1,5 @@
-import { Movie } from "./movie";
+import { Movie } from "./movie"
+import { Types } from "mongoose";
 
 type List = {
   name: string
@@ -6,6 +7,7 @@ type List = {
 }
 
 export type User = {
+  _id: Types.ObjectId
   name: string
   surname: string
   email: string
@@ -15,6 +17,6 @@ export type User = {
   lists: List[]
 }
 
-export type RegisterUser = Omit<User, 'favoriteMovies' | 'watchList' | 'lists'>
+export type RegisterUser = Omit<User, "favoriteMovies" | "watchList" | "lists">
 
-export type LoginUser = Pick<User, 'email' | 'password'>
+export type LoginUser = Pick<User, "email" | "password">

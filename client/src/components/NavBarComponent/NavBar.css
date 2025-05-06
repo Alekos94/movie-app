@@ -1,57 +1,90 @@
-@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
-}
 .navBar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: rgb(20, 20, 20);
-  padding: 1.5rem 3rem;
-  margin-bottom: 1.5rem;
-  position: sticky;
+ background-color: rgb(37, 36, 34);
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ padding: 1.5rem 3rem;
 }
 
 .navigationSection {
   display: flex;
+  gap: 4rem;
   align-items: center;
 }
 
 .navLinks {
   display: flex;
+  gap: 2em;
   list-style: none;
-  outline: none;
-  gap: 1rem;
 }
 
 .navLinks a {
   text-decoration: none;
-  color: inherit;
-  color:#d1cece;
-  font-weight: bold;
-  font-size: 1.25rem;
+  color: rgb(255, 252, 242);
+  font-size: 1.75rem;
+  font-weight: 900;
 }
 
 .navLinks a:hover {
-  color:#F57C00;
+  color: rgb(245, 124, 0);
   text-decoration: underline;
 }
 
-
 .loginSection {
-  display: flex;
-  gap: 0.5em;
+  display: flex; 
+  gap: 2em;
 }
 
-.logo {
-  font-size: 1.75rem;
-  font-family: 'Luckiest Guy', cursive;
-  font-weight: bold;
-  background: linear-gradient(45deg, #fffb00, #ff7300, #f50000);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.btn {
+  font-size: 1.25rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5em;
+  outline: none;
+  border: none;
+  font-family: 'Quicksand', sans-serif;
+  cursor: pointer;
+  min-width: 120px;
+}
+
+.register-btn {
+  background-color: rgb(204, 197, 185);
+  color: rgb(64, 61, 57)
+}
+
+.login-btn {
+  background-color: rgb(245, 124, 0);
+  color: white;
+}
+
+.register-btn:hover {
+  background-color: rgb(155, 150, 141);
+}
+
+.register-btn:active {
+  background-color: rgb(125, 120, 112);
+  font-weight: 600;
+}
+
+.login-btn:hover {
+  background-color: rgb(210, 100, 0);
+}
+
+.login-btn:active {
+  background-color: rgb(180, 85, 0);
+  font-weight: 600;
+}
+
+.hamburger-menu {
+  font-size: 2.5rem;
+  color: rgb(255, 252, 242);
+}
+
+
+@media (max-width: 768px) {
+  .btn {
+    font-size: 1.5rem;
+    padding: 0.75rem 1.25rem;
   }
+}

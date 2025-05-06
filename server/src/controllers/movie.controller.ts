@@ -1,7 +1,13 @@
 import { Favorites } from "../models/movies.model"
 import { Movie } from "../types/movie"
 import { Request, Response } from "express"
+import { User } from "../types/user"
 
+// export async function getUserFavorites(request:Request, response:Response):Promise<void> {
+//   try {
+//     const {_id} = request.user as User
+//   }
+// }
 
 export async function getFavorites(request:Request, response:Response):Promise<void> {
   try {

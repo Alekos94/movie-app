@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100%;
+  font-family: 'Quicksand', sans-serif;
+  background-color: rgb(64, 61, 57);
+  overflow-x: hidden;
+}
+
+.movieList {
+  overflow-x: auto;
+  padding-bottom: 2em;
+}
+
+.movieList::-webkit-scrollbar {
+height: 0.51em;
+}
+
+.movieList::-webkit-scrollbar-track {
+  border-radius: 100vw;
+}
+
+.movieList::-webkit-scrollbar-thumb {
+  background-color: orange;
+  border-radius: 100vw;
+}

@@ -1,6 +1,15 @@
+import { useState } from "react";
 import "./NavBar.css"
+import { GiHamburgerMenu } from "react-icons/gi";
+import { RxCross1 } from "react-icons/rx";
 
 export function NavBar() {
+  const [isItOpen , setIsItOpen] = useState(false)
+
+  function setMenu () {
+    setIsItOpen(!isItOpen)
+  }
+  
   return (
     <nav className="navBar">
       <div className="navigationSection">
@@ -15,8 +24,11 @@ export function NavBar() {
         </ul>
       </div>
       <div className="loginSection">
-        <button className="register-btn">Register</button>
-        <button className="login-btn">Login</button>
+        <button className="btn register-btn">Register</button>
+        <button className="btn login-btn">Login</button>
+      </div>
+      <div className="hamburger-menu" onClick={setMenu}>
+      {isItOpen? <RxCross1 /> : <GiHamburgerMenu />}
       </div>
     </nav>
   )

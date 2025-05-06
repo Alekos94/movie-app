@@ -4,6 +4,7 @@ import { LoginUser, RegisterUser, User } from "../types/user"
 import bcrypt from "bcryptjs"
 import dotenv from "dotenv"
 import jwt from "jsonwebtoken"
+import cookieParser = require("cookie-parser")
 dotenv.config()
 
 export async function registerUser(
@@ -19,14 +20,13 @@ export async function registerUser(
       email,
       password: passwordHash,
     })
-    //only include non-sensitive data in the token payload
     const accessToken = jwt.sign(
-      { id: newUser._id, email: newUser.email },
-      process.env.ACCESS_TOKEN_SECRET!
+      {id: newUser._id},
+      process.env.ACCESS_TOKEN_SECRET!, 
+      {expiresIn: '30s'}
     )
-    //never include in a response a hashed password 
-    const { password: _password, ...userWithoutPassword } = newUser.toObject()
-    response.status(201).json({ user: userWithoutPassword,  token: accessToken })
+    response.cookie('jwt', accessToken, {httpOnly: true, maxAge: 30*1000})
+    response.status(201).json({ id: newUser._id})
   } catch (error: any) {
     response.status(400).json({ error: error.message })
   }
@@ -49,11 +49,12 @@ export async function loginUser(
         return
       }
       const accessToken = jwt.sign(
-        { id: user._id, email: user.email },
-        process.env.ACCESS_TOKEN_SECRET!
+        { id: user._id},
+        process.env.ACCESS_TOKEN_SECRET!,
+        {expiresIn: '30s'}
       )
-      const { password: _password, ...userWithoutPassword } = user.toObject()
-      response.status(200).json({ user: userWithoutPassword, token: accessToken })
+      response.cookie('jwt', accessToken, {httpOnly: true, maxAge: 30*1000})
+      response.status(200).json({ id: user._id})
     }
   } catch (error: any) {
     console.error(error)
