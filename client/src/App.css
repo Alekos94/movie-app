@@ -5,13 +5,22 @@
   margin: 0;
   padding: 0;
 }
+ 
+html, body, #root {
+  height: 100%;  /* Ensures the height of body and html elements are full screen */
+  margin: 0;
+}
+
 
 body {
+  display: flex;    /* Use flexbox to ensure content fills the full height */
+  flex-direction: column;
   width: 100%;
   font-family: 'Quicksand', sans-serif;
   background-color: rgb(64, 61, 57);
   overflow-x: hidden;
 }
+
 
 .movieList {
   overflow-x: auto;

@@ -25,22 +25,12 @@ export function Home() {
     }
   }
 
-  // function handleToggle (option: string) {
-  //   if (option === selectedOption) return;
-  //   setVisible(false);
-
-  //   setTimeout(() => {
-  //     setSelectedOption(option);
-  //     setVisible(true);
-  //   }, 300); 
-  // };
-  
 
   return (
     //Improvements
     //add loading indicator  (aka a spinner or skeleton loader) React Router lets you define <Suspense> + lazy() or even a global pending state.
     //handle error weith new Response, errorElement in react Router
-    <>
+    <div className="homePage-container">
       <div className="searchBar">
         <form onSubmit={handleSubmit}>
           <label htmlFor="movieSearch">
@@ -57,19 +47,11 @@ export function Home() {
         </form>
       </div>
       <div className="moviesLists">
-        {/* <div className="toggle-container">
-          <span className={selectedOption === 'movies' ? 'toggle-option selected' : 'toggle-option'} onClick={() => handleToggle('movies')}>Movies</span>
-          <span className={selectedOption === 'tv' ? 'toggle-option selected' : 'toggle-option'} onClick={() => handleToggle('tv')}>TV</span>
-        </div>
-        <div className={`fade-container ${visible ? 'visible' : 'hidden'}`}>
-        {selectedOption === 'movies' ? (<MovieList title={"What's popular"} list={popularMoviesList} />) : (<MovieList title={"Must-Watch"} list={topRatedMoviesList} />)}
-        </div> */}
-        {/* {selectedOption === 'movies' ? <MovieList title={"What's popular"} list={popularMoviesList} /> : <MovieList title={"Must-Watch"} list={topRatedMoviesList} />} */}
         <MovieList title={"What's popular"} list={popularMoviesList} />
         <MovieList title={"Coming Soon"} list={upcomingMoviesList} />
         <MovieList title={"Must-Watch"} list={topRatedMoviesList} />
       </div>
-    </>
+    </div>
   )
 }
 

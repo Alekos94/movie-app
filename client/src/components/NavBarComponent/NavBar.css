@@ -10,8 +10,17 @@
 
 .navigationSection {
   display: flex;
-  gap: 4rem;
+  gap: 2rem;
   align-items: center;
+}
+
+.logo {
+  font-size: 3em;
+  font-weight: 900;
+}
+
+.logo span {
+  color: rgb(245, 124, 0);
 }
 
 .navLinks {
@@ -20,7 +29,7 @@
   list-style: none;
 }
 
-.navLinks a {
+.navLinks a{
   text-decoration: none;
   color: rgb(255, 252, 242);
   font-size: 1.75rem;
@@ -79,12 +88,60 @@
 .hamburger-menu {
   font-size: 2.5rem;
   color: rgb(255, 252, 242);
+  cursor: pointer;
+}
+
+.hidden-menu {
+  padding-top: 1rem;
+  padding-left: 1rem;
+  background-color: rgba(37, 36, 34, 0.90);
+  height: 100%;
+  width: 70%;
+  position:absolute;
+  z-index: 1000;
+  right: 0;
+  font-size: 3rem;
+  transition: transform 0.5s ease-in-out;
+  transform: translateX(100%);
+  
+}
+
+.hidden-menu.open {
+  transform: translateX(0);
+}
+
+.hidden-menu ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.hidden-menu a {
+  text-decoration: none;
+  color: rgb(255, 252, 242);
+}
+
+.hidden-menu a:active {
+  color: rgb(245, 124, 0);
 }
 
 
-@media (max-width: 768px) {
-  .btn {
-    font-size: 1.5rem;
-    padding: 0.75rem 1.25rem;
+@media (width>=900px) {
+  .hamburger-menu {
+    display:none;
   }
+
+  .hidden-menu {
+    display:none
+  }
+}
+
+@media (width<900px) {
+ .btn {
+  display: none;
+ }
+ .navLinks {
+  display: none;
+ }
 }
