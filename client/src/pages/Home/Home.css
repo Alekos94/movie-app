@@ -1,40 +1,81 @@
 
+
+.homePage-container {
+  height: 100%;
+  padding-top: 3rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.searchBar {
+  width: 100%;
+  display: flex;
+}
+.searchBar span {
+  font-size: 6rem;
+  font-weight: 600;
+}
+
+.searchBar label {
+  font-size: 3rem;
+  color: rgb(210, 100, 0);
+}
+
+.input-container {
+  position: relative;
+  width: 75%;
+}
+
+.input-container input {
+  width: 100%;
+  font-size: 2rem;
+  border-radius: 999999px;
+  outline: none;
+  border:2px solid rgb(210, 100, 0);
+  padding: 0.5em 2em 0.5em 1em;
+  color: rgb(37, 36, 34);
+}
+
+.input-container button {
+  position: absolute;
+  right: 0;
+  top: 0.1rem; /* Use em for consistency */
+  padding: 0.5em 1.5em;  /* Matching padding with input */
+  font-size: 2rem;  /* Same font size as input */
+  border-radius: 9999px;  /* Pill shape */
+  background-color: rgb(210, 100, 0);
+  color: white;
+  border: 2px solid rgb(210, 100, 0);
+  cursor: pointer;
+}
+
+.input-container button:hover {
+  background-color: rgb(245, 124, 0);
+  border: 2px solid rgb(245, 124, 0);
+}
+
+.searchBar form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+.moviesList-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+}
 .movieList {
   display: flex;
   gap: 0.5em;
 }
 
-
-.toggle-container {
-  display:inline-flex;
-  width: fit-content;
-  border: solid, #007bff, thin;
-  border-radius: 999999px;
-  overflow: hidden;
-}
-
-.toggle-option { 
-  flex: 1;
-  padding: 10px 20px;
-  text-align: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  color: #007bff;
-  font-weight: 500;
-}
-
-.toggle-option.selected {
-  background-color: #007bff;
-  color: white;
-  border-radius: 999999em;
-}
-
-
-.fade-container {
-  transition: opacity 0.3s ease;
-  opacity: 1;
-}
-
-.fade-container.hidden {
-  opacity: 0;
+.list-title {
+  font-size: 2.5rem;
+  color:rgb(204, 197, 185);
+  font-weight: 600;
 }

@@ -20,22 +20,3 @@ body {
   background-color: rgb(64, 61, 57);
   overflow-x: hidden;
 }
-
-
-.movieList {
-  overflow-x: auto;
-  padding-bottom: 2em;
-}
-
-.movieList::-webkit-scrollbar {
-height: 0.51em;
-}
-
-.movieList::-webkit-scrollbar-track {
-  border-radius: 100vw;
-}
-
-.movieList::-webkit-scrollbar-thumb {
-  background-color: orange;
-  border-radius: 100vw;
-}

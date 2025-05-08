@@ -5,17 +5,15 @@ import { fetchMovieListWithAuth } from "../../utils/fetchMovieListWithAuth"
 import { MovieList } from "../../components/MovieListComponent/MovieList"
 import { useRef, useState } from "react"
 
-
 export function Home() {
   // const [selectedOption, setSelectedOption] = useState('movies')
   // const [visible, setVisible] = useState(true);
 
-
   const searchTermRef = useRef<HTMLInputElement>(null)
   const navigate = useNavigate()
 
-  const { topRatedMoviesList, popularMoviesList, upcomingMoviesList } = useLoaderData<HomePageLoaderData>()
-
+  const { topRatedMoviesList, popularMoviesList, upcomingMoviesList } =
+    useLoaderData<HomePageLoaderData>()
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -25,7 +23,6 @@ export function Home() {
     }
   }
 
-
   return (
     //Improvements
     //add loading indicator  (aka a spinner or skeleton loader) React Router lets you define <Suspense> + lazy() or even a global pending state.
@@ -34,19 +31,24 @@ export function Home() {
       <div className="searchBar">
         <form onSubmit={handleSubmit}>
           <label htmlFor="movieSearch">
+            <span>Welcome!</span> <br />
             Hundrends of movies and TV shows for you to discover
           </label>
-          <input
-            type="text"
-            id="movieSearch"
-            name="movieSearch"
-            placeholder="Search for a movie, tv show... "
-            ref={searchTermRef}
-          />
-          <button type="submit">Search</button>
+          <div className="input-container">
+            <input
+              type="text"
+              id="movieSearch"
+              name="movieSearch"
+              placeholder="Search for a movie, tv show... "
+              ref={searchTermRef}
+            />
+            <button type="submit" className="search-button">
+              Search
+            </button>
+          </div>
         </form>
       </div>
-      <div className="moviesLists">
+      <div className="moviesList-container">
         <MovieList title={"What's popular"} list={popularMoviesList} />
         <MovieList title={"Coming Soon"} list={upcomingMoviesList} />
         <MovieList title={"Must-Watch"} list={topRatedMoviesList} />
@@ -66,7 +68,7 @@ export async function homePageLoader({ request }: { request: Request }) {
     if (!popularRes.ok || !upcomingRes.ok || !topRatedRes.ok) {
       throw new Error("Error with fetching the data")
     }
-    
+
     const [popularData, upcomingData, topRatedData]: {
       results: GeneralMovie[]
     }[] = await Promise.all([

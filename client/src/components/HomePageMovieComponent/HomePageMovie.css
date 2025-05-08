@@ -1,21 +1,17 @@
-imp
-
-* {
-  box-sizing: border-box;
-}
 
 .movieContainer {
   outline: none;
-  border: thin black solid;
   border-radius: 0.3em;
+  cursor: pointer;
 }
 
+.moviePoster {
+  position: relative;
+}
 .moviePoster img {
   border-radius: 0.3em;
 }
-.heart {
-  color: red;     
-}
+
 .movieRating {
   display: flex;
   align-items: center;
@@ -24,8 +20,8 @@ imp
   width: 2.25em;
   height: 2.25em;
   border-radius: 50%;
-  /* font-size: 0.85em; */
-  color: white;
+  position: absolute;
+  bottom: -0.5rem;
   outline: none;
   border: 0.2em black solid;
 }
@@ -58,4 +54,39 @@ imp
 .movieRating.red {
   border-color: rgb(255, 69, 69);
   color: rgb(255, 69, 69);
+}
+
+.movieTitle {
+  padding-top: 0.75rem;
+  font-size: 1rem;
+  font-weight: 900;
+  color: rgb(255, 252, 242);
+}
+
+.movieReleaseDate {
+  color: rgb(255, 252, 242);
+}
+
+.heart {
+  color: rgb(red, green, blue);
+}
+
+
+.movieList {
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.movieList::-webkit-scrollbar {
+height: 0.75rem;
+}
+
+.movieList::-webkit-scrollbar-track {
+  background-color: rgba(204, 197, 185, 0.4);
+  border-radius: 100vw;
+}
+
+.movieList::-webkit-scrollbar-thumb {
+  background-color: rgba(245, 124, 0, 0.8);
+  border-radius: 100vw;
 }
