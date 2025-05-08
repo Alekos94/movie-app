@@ -33,3 +33,27 @@ export function RegisterPage () {
     </div>
   )
 }
+
+
+export async function registerAction ({ request }: { request: Request }) {
+  const formData = await request.formData()
+  const name = formData.get('name')
+  const surname = formData.get('surname')
+  const email = formData.get("email")
+  const password = formData.get("password")
+
+  const response = await fetch("http://localhost:3000/api/users/register", {
+    method: "POST",
+    credentials: "include",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, surname, email, password }),
+  })
+
+  if (!response.ok) {
+    return await response.json()
+  }
+  const data = await response.json()
+  console.log(data)
+
+  //add redirect functionality 
+}

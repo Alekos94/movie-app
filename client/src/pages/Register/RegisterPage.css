@@ -45,13 +45,13 @@
 .input input {
   font-size: 1.5rem;
   border-radius: 0.5em;
-  border: none;
+  border: thin solid black;
   outline: none;
   padding: 0.5rem 1rem;
 }
 
 .input input:focus {
-  border: thick solid rgb(245, 124, 0);
+  border:  thick solid rgb(245, 124, 0);
 }
 
 .sign-up {
