@@ -137,7 +137,7 @@
 }
 
 @media (width<900px) {
- .btn {
+  .register-btn, .login-btn {
   display: none;
  }
  .navLinks {

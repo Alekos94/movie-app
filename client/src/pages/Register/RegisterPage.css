@@ -1,11 +1,11 @@
-.login-page-wrapper {
+.register-page-wrapper {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.login-container {
+.register-container {
   border: none;
   border-radius: 1rem;
   background-color: rgb(204, 197, 185);
@@ -20,28 +20,51 @@
   padding-bottom: 2rem;
 }
 
-.login-container form {
+.register-container form {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   padding-right: 2rem;
 }
 
-.login-title {
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.register-title {
   font-size: 3rem;
   font-weight: 600;
 }
 
-.sign-in {
+.input label {
+  font-size: 1.5rem;
+}
+
+.input input {
+  font-size: 1.5rem;
+  border-radius: 0.5em;
+  border: none;
+  outline: none;
+  padding: 0.5rem 1rem;
+}
+
+.input input:focus {
+  border: thick solid rgb(245, 124, 0);
+}
+
+.sign-up {
   background-color: rgb(245, 124, 0);
   color: white; 
 }
 
-.sign-in:hover {
+.sign-up:hover {
   background-color: rgb(210, 100, 0)
 }
 
-.sign-in:active {
+.sign-up:active {
   background-color: rgb(180, 85, 0);
   font-weight: 600;
 }
+

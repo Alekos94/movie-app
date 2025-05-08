@@ -1,33 +1,40 @@
 import { Form, redirect, useActionData } from "react-router"
 import "./LoginPage.css"
+
 export function LoginPage() {
   const actionData = useActionData()
   console.log(actionData)
   return (
     <div className="login-page-wrapper">
-    <div className="login-container">
-      <div className="login-title">LOG IN</div>
-      <Form className="login-form" method="POST">
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Type your email"
-          required
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Type your email"
-          minLength={6}
-          required
-        />
-        <button>Sign In</button>
-      </Form>
-    </div>
+      <div className="login-container">
+        <div className="login-title">LOG IN</div>
+        <Form className="login-form" method="POST">
+          <div className="input email">
+            <label htmlFor="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Email Address"
+              required
+            />
+          </div>
+
+          <div className="input password">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+              minLength={6}
+              required
+            />
+          </div>
+
+          <button className="btn sign-in">Sign In</button>
+        </Form>
+      </div>
     </div>
   )
 }

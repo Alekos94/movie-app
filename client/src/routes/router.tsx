@@ -7,6 +7,7 @@ import {
 import { NavBar } from "../components/NavBarComponent/NavBar"
 import { MovieDeciatedPage, MovieDedicatedPageLoader } from "../pages/MovieDedicatedPage/MovieDedicatedPage"
 import { LoginPage, loginPageAction } from "../pages/Login/LoginPage"
+import { RegisterPage } from "../pages/Register/RegisterPage"
 //add errorElements
 
 
@@ -16,6 +17,7 @@ export const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home />, loader: homePageLoader },
       {path: "/login", element: <LoginPage/>, action: loginPageAction},
+      {path: "/register", element: <RegisterPage/>},
       { path: "/search", element: <SearchResult />,loader: searchResultPageLoader},
       {path: '/movie/:movieId', element: <MovieDeciatedPage/>, loader: MovieDedicatedPageLoader}
     ],
