@@ -3,11 +3,10 @@ import "./Home.css"
 import { useLoaderData, useNavigate } from "react-router"
 import { fetchMovieListWithAuth } from "../../utils/fetchMovieListWithAuth"
 import { MovieList } from "../../components/MovieListComponent/MovieList"
-import { useRef, useState } from "react"
+import { useRef} from "react"
 
 export function Home() {
-  // const [selectedOption, setSelectedOption] = useState('movies')
-  // const [visible, setVisible] = useState(true);
+
 
   const searchTermRef = useRef<HTMLInputElement>(null)
   const navigate = useNavigate()

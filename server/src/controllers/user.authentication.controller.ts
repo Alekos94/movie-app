@@ -21,12 +21,17 @@ export async function registerUser(
       password: passwordHash,
     })
     const accessToken = jwt.sign(
-      {id: newUser._id},
-      process.env.ACCESS_TOKEN_SECRET!, 
-      {expiresIn: '30s'}
+      { id: newUser._id, email: newUser.email },
+      process.env.ACCESS_TOKEN_SECRET!,
+      { expiresIn: "30m" }
     )
-    response.cookie('jwt', accessToken, {httpOnly: true, maxAge: 30*1000})
-    response.status(201).json({ id: newUser._id})
+    response.cookie("jwt", accessToken, {
+      httpOnly: true,
+      maxAge: 30 * 1000 * 60,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+    })
+    response.status(201).json({ id: newUser._id, email: newUser.email })
   } catch (error: any) {
     response.status(400).json({ error: error.message })
   }
@@ -42,20 +47,24 @@ export async function loginUser(
     if (!user) {
       response.status(400).json({ error: "Invalid email" })
       return
-    } else {
-      const match = await bcrypt.compare(password, user.password)
-      if (!match) {
-        response.status(400).json({ error: "Invalid password" })
-        return
-      }
-      const accessToken = jwt.sign(
-        { id: user._id},
-        process.env.ACCESS_TOKEN_SECRET!,
-        {expiresIn: '30s'}
-      )
-      response.cookie('jwt', accessToken, {httpOnly: true, maxAge: 30*1000})
-      response.status(200).json({ id: user._id})
     }
+    const match = await bcrypt.compare(password, user.password)
+    if (!match) {
+      response.status(400).json({ error: "Invalid password" })
+      return
+    }
+    const accessToken = jwt.sign(
+      { id: user._id, email: email },
+      process.env.ACCESS_TOKEN_SECRET!,
+      { expiresIn: "30m" }
+    )
+    response.cookie("jwt", accessToken, {
+      httpOnly: true,
+      maxAge: 30 * 1000 * 60,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+    })
+    response.status(200).json({ id: user._id, email: email })
   } catch (error: any) {
     console.error(error)
     response.status(500).json({ error: "Internal server error" })
