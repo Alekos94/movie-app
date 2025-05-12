@@ -21,6 +21,11 @@
   font-weight: 900;
 }
 
+a {
+  text-decoration: none;
+  color: white;
+}
+
 .logo span {
   color: rgb(245, 124, 0);
 }
@@ -48,6 +53,11 @@
   gap: 2em;
 }
 
+.logOutSection {
+  display: flex; 
+  gap: 2em;
+}
+
 .btn {
   font-size: 1.25rem;
   padding: 0.5rem 1rem;
@@ -67,6 +77,20 @@
 .login-btn {
   background-color: rgb(245, 124, 0);
   color: white;
+}
+
+.profile-btn {
+  background-color: rgb(245, 124, 0);
+  color: white;
+  font-weight: 600;
+  width: 50px; /* Set the width of the circle */
+  height: 50px; /* Set the height of the circle */
+  border-radius: 50%; /* Make it a circle */
+  display: flex; /* Flexbox to center the content */
+  justify-content: center; /* Center horizontally */
+  align-items: center;
+  padding: 0;
+  min-width: 0;
 }
 
 .register-btn:hover {
@@ -140,7 +164,7 @@
 }
 
 @media (width<900px) {
-  .register-btn, .login-btn {
+  .register-btn, .login-btn, .logout-btn {
   display: none;
  }
  .navLinks {

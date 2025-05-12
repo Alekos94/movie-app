@@ -1,61 +1,62 @@
-import { Form, redirect, useActionData } from "react-router"
-import "./LoginPage.css"
+import { useNavigate } from "react-router";
+import { useUserContext } from "../../contexes/UserContext";
+import { useState } from "react";
+import "./LoginPage.css";
 
 export function LoginPage() {
-  const actionData = useActionData()
-  console.log(actionData)
+  const { fetchUser } = useUserContext();
+  const navigate = useNavigate();
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const form = e.currentTarget as HTMLFormElement;
+    const formData = new FormData(form);
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    try {
+      const response = await fetch("http://localhost:3000/api/users/login", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        setError(errorData.message || "Login failed");
+        return;
+      }
+
+      await fetchUser(); 
+      navigate("/");
+
+    } catch (err) {
+      console.error(err);
+      setError("Login error");
+    }
+  };
+
   return (
     <div className="login-page-wrapper">
       <div className="login-container">
-        <div className="login-title">LOG IN</div>
-        <Form className="login-form" method="POST">
+        <div className="login-title">Log In</div>
+        <form className="login-form" onSubmit={handleSubmit}>
           <div className="input email">
             <label htmlFor="email">Email Address</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Email Address"
-              required
-            />
+            <input type="email" name="email" required />
           </div>
 
           <div className="input password">
             <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Password"
-              minLength={6}
-              required
-            />
+            <input type="password" name="password" minLength={6} required />
           </div>
-
+        {/* update the error handling  */}
+          {error && <div className="error">{error}</div>} 
           <button className="btn sign-in">Sign In</button>
-        </Form>
+        </form>
       </div>
     </div>
-  )
-}
-
-export async function loginPageAction({ request }: { request: Request }) {
-  const formData = await request.formData()
-  const email = formData.get("email")
-  const password = formData.get("password")
-
-  const response = await fetch("http://localhost:3000/api/users/login", {
-    method: "POST",
-    credentials: "include",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password }),
-  })
-
-  if (!response.ok) {
-    return await response.json()
-  }
-  const data = await response.json()
-  console.log(data)
-
-  // return redirect('/')
+  );
 }

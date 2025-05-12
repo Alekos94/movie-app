@@ -25,7 +25,7 @@ export function Home() {
   return (
     //Improvements
     //add loading indicator  (aka a spinner or skeleton loader) React Router lets you define <Suspense> + lazy() or even a global pending state.
-    //handle error weith new Response, errorElement in react Router
+    //handle error with new Response, errorElement in react Router
     <div className="homePage-container">
       <div className="searchBar">
         <form onSubmit={handleSubmit}>
@@ -79,7 +79,6 @@ export async function homePageLoader({ request }: { request: Request }) {
     const popularMoviesList = popularData.results
     const upcomingMoviesList = upcomingData.results
     const topRatedMoviesList = topRatedData.results
-
     return { popularMoviesList, upcomingMoviesList, topRatedMoviesList }
   } catch (e) {
     if (e instanceof Error) {

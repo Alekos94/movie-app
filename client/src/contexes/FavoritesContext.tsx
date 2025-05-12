@@ -25,7 +25,6 @@ useEffect(() => {
       }
       
       const data = await response.json()
-      console.log(data)
       setFavorites(data)
     } catch (e) {
       setError(e.message)

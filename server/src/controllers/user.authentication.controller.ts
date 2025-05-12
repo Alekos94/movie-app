@@ -21,7 +21,7 @@ export async function registerUser(
       password: passwordHash,
     })
     const accessToken = jwt.sign(
-      { id: newUser._id, email: newUser.email },
+      { id: newUser._id, email: newUser.email},
       process.env.ACCESS_TOKEN_SECRET!,
       { expiresIn: "30m" }
     )
@@ -31,7 +31,7 @@ export async function registerUser(
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
     })
-    response.status(201).json({ id: newUser._id, email: newUser.email })
+    response.status(201).json({ id: newUser._id, email: newUser.email, name: newUser.name})
   } catch (error: any) {
     response.status(400).json({ error: error.message })
   }
@@ -54,7 +54,7 @@ export async function loginUser(
       return
     }
     const accessToken = jwt.sign(
-      { id: user._id, email: email },
+      { id: user._id, email: email},
       process.env.ACCESS_TOKEN_SECRET!,
       { expiresIn: "30m" }
     )
@@ -64,7 +64,7 @@ export async function loginUser(
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
     })
-    response.status(200).json({ id: user._id, email: email })
+    response.status(200).json({ id: user._id, email: email, name: user.name })
   } catch (error: any) {
     console.error(error)
     response.status(500).json({ error: "Internal server error" })

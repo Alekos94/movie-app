@@ -33,3 +33,15 @@ export type HomePageLoaderData = {
   upcomingMoviesList: GeneralMovie[];
 }
 
+// type List = {
+//   name: string
+//   movies: FavoriteMovie[]
+// }
+
+// export type User = {
+//   _id: string
+//   name: string
+//   surname: string
+//   email: string
+// }
+
