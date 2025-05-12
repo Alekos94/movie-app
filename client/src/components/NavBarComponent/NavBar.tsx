@@ -2,17 +2,28 @@ import { useState} from "react"
 import "./NavBar.css"
 import { GiHamburgerMenu } from "react-icons/gi"
 import { RxCross2 } from "react-icons/rx"
-import { Link } from "react-router";
+import { Link, Navigate } from "react-router";
 import { useUserContext } from "../../contexes/UserContext";
+import { useNavigate } from "react-router";
 
 export function NavBar() {
   const [burgerClass, setBurgerClass] = useState(false)
-  const {user} = useUserContext()
-
+  const {user, setUser} = useUserContext()
+  const navigate = useNavigate()
 
 
   function setMenu() {
     setBurgerClass(!burgerClass)
+  }
+
+async function handleLogOut () { 
+  await fetch("http://localhost:3000/api/users/logout", {
+    method: "POST",
+    credentials: "include", 
+  })
+   console.log('hello')
+    setUser(null)
+    navigate('/') 
   }
 
   return (
@@ -34,7 +45,7 @@ export function NavBar() {
           </ul>
         </div>
         {user ?  <div className="logOutSection">
-          <button className="btn logout-btn">Logout</button>
+          <button onClick={handleLogOut} className="btn logout-btn">Logout</button>
           <button className="btn profile-btn">{user.name[0]}</button>
         </div> : <div className="loginSection">
           <Link to='/register'>

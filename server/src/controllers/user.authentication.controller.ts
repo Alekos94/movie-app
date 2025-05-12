@@ -70,3 +70,13 @@ export async function loginUser(
     response.status(500).json({ error: "Internal server error" })
   }
 }
+
+export async function logoutUser(request: Request, response: Response) {
+  response.cookie("jwt", "", {
+    httpOnly: true,
+    maxAge: 0, 
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
+  })
+  response.status(200).json({ message: "Logged out successfully" })
+}
