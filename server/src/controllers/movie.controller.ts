@@ -1,43 +1,53 @@
-import { Favorites } from "../models/movies.model"
 import { Movie } from "../types/movie"
 import { Request, Response } from "express"
-import { User } from "../types/user"
+import { Users } from "../models/user.model"
 
-// export async function getUserFavorites(request:Request, response:Response):Promise<void> {
-//   try {
-//     const {_id} = request.user as User
-//   }
-// }
 
-export async function getFavorites(request:Request, response:Response):Promise<void> {
+
+export async function getUserFavorites (request:Request, response:Response):Promise<void> {
   try {
-    const favorites = await Favorites.find()
-    response.status(200).send(favorites)
-  } catch (e) {
-    console.error(e);
+    if (request.user) {
+      const {favoriteMovies} = request.user
+      response.status(200).json(favoriteMovies)
+    } else {
+      response.status(401).json({ error: "Unauthorized" });
+    }
+  } catch (err) {
+    console.error(err);
     response.status(500).json({ error: "Something went wrong" });
   }
 }
 
-export async function addFavorite(request: Request<{}, {}, Movie>, response: Response): Promise<void> {
+export async function addFavoriteMovie(request: Request<{}, {}, Movie>, response:Response):Promise<void> {
   try {
-    const {title,overview,tmdb_id,vote_average,genre_ids,release_date,user_average,poster_path} = request.body
-    const newFavorite = await Favorites.create({title,overview,tmdb_id,vote_average,genre_ids,release_date,user_average,poster_path})
-    response.status(201).json(newFavorite)
-  } catch (e) {
-    console.log(e)
+    if (request.user) {
+      const {_id} = request.user
+      const {title,overview,tmdb_id,vote_average,genre_ids,release_date,user_average,poster_path} = request.body
+      const updatedUser = await Users.findOneAndUpdate({_id}, {$push: {favoriteMovies: {title,overview,tmdb_id,vote_average,genre_ids,release_date,user_average,poster_path}}}, {new:true})
+      response.status(201).json(updatedUser)
+    } else {
+      response.status(401).json({ error: "Unauthorized" });
+    }
+  } catch (err) {
+    console.error(err);
     response.status(500).send({ error: "Something went wrong" })
   }
 }
 
-export async function removeFavorite(request:Request, response:Response): Promise<void> {
+
+export async function removeFavoriteMovie(request: Request<{}, {}, Movie>, response:Response):Promise<void> {
   try {
-    const id: number = request.body.tmdb_id
-    const deletedFavorite = await Favorites.findOneAndDelete({tmdb_id:id})
-    response.status(200).send(`${deletedFavorite} was deleted succesfully`)
-  } catch (e) {
-    console.log(e)
+    if (request.user) {
+      const {_id} = request.user
+      const {tmdb_id} = request.body
+      console.log(tmdb_id)
+      const removedMovie = await Users.findOneAndUpdate({_id}, {$pull: {favoriteMovies: {tmdb_id}}}, {new:true})
+      response.status(201).json(removedMovie)
+    } else {
+      response.status(401).json({ error: "Unauthorized" });
+    }
+  } catch (err) {
+    console.error(err);
     response.status(500).send({ error: "Something went wrong" })
   }
 }
-

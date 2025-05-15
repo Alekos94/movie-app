@@ -2,7 +2,7 @@ import { useState} from "react"
 import "./NavBar.css"
 import { GiHamburgerMenu } from "react-icons/gi"
 import { RxCross2 } from "react-icons/rx"
-import { Link, Navigate } from "react-router";
+import { Link } from "react-router";
 import { useUserContext } from "../../contexes/UserContext";
 import { useNavigate } from "react-router";
 
@@ -21,11 +21,10 @@ async function handleLogOut () {
     method: "POST",
     credentials: "include", 
   })
-   console.log('hello')
     setUser(null)
     navigate('/') 
   }
-
+//fix navbar for mobile the profile button and logout are stiull visible add them in the hidden menu
   return (
     <>
       <nav className="navBar">

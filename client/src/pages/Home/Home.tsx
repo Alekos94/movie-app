@@ -4,9 +4,9 @@ import { useLoaderData, useNavigate } from "react-router"
 import { fetchMovieListWithAuth } from "../../utils/fetchMovieListWithAuth"
 import { MovieList } from "../../components/MovieListComponent/MovieList"
 import { useRef} from "react"
+import { useFavorites } from "../../contexes/FavoritesContext"
 
 export function Home() {
-
 
   const searchTermRef = useRef<HTMLInputElement>(null)
   const navigate = useNavigate()

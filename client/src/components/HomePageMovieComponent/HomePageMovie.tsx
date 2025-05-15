@@ -18,7 +18,7 @@ export function HomePageMovie({
   const ratingColor = defineRatingColor(formatRating(vote_average))
   const navigate = useNavigate()
   const { favorites, toggleFavorite } = useFavorites()
-
+  
   const movie: FavoriteMovie = {
     title: title,
     overview: overview,
@@ -32,6 +32,7 @@ export function HomePageMovie({
   const isFavorite = favorites.some((favorite) => favorite.tmdb_id === id)
 
   return (
+    <>
     <div onClick={() => navigate(`movie/${id}`, {})} className="movieContainer">
       <div className="moviePoster">
         <img src={`https://image.tmdb.org/t/p/w185${poster_path}`} />
@@ -43,14 +44,18 @@ export function HomePageMovie({
       <div className="movieTitle">{title}</div>
       <div className="movieReleaseDate">{release_date}</div>
     </div>
-      // {isFavorite ? (
-      //   <div onClick={() => toggleFavorite(movie)}>
-      //     <FaHeart className="heart" />
-      //   </div>
-      // ) : (
-      //   <div onClick={() => toggleFavorite(movie)}>
-      //     <FaRegHeart className="heart" />
-      //   </div>
-      // )}
+    <div>
+
+      {isFavorite ? (
+        <div onClick={() => toggleFavorite(movie)}>
+          <FaHeart className="heart" />
+        </div>
+      ) : (
+        <div onClick={() => toggleFavorite(movie)}>
+          <FaRegHeart className="heart" />
+        </div>
+      )}
+    </div>
+    </>
   )
 }

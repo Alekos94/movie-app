@@ -1,10 +1,12 @@
 import { Router } from "express";
-import { addFavorite, getFavorites, removeFavorite } from "../controllers/movie.controller";
-
+import {addFavoriteMovie, getUserFavorites, removeFavoriteMovie} from "../controllers/movie.controller";
+import { authenticateToken } from "../middlewares/authenticateToke.middleware";
 
 export const movieRouter = Router()
 
-movieRouter.post('/favorites', addFavorite)
-movieRouter.get('/favorites', getFavorites)
-movieRouter.delete('/favorites', removeFavorite)
+
+movieRouter.get('/favorites', authenticateToken, getUserFavorites)
+movieRouter.post('/favorites', authenticateToken, addFavoriteMovie)
+movieRouter.delete('/favorites', authenticateToken, removeFavoriteMovie)
+
 
