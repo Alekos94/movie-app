@@ -8,6 +8,7 @@ import { NavBar } from "../components/NavBarComponent/NavBar"
 import { MovieDeciatedPage, MovieDedicatedPageLoader } from "../pages/MovieDedicatedPage/MovieDedicatedPage"
 import { LoginPage} from "../pages/Login/LoginPage"
 import { RegisterPage } from "../pages/Register/RegisterPage"
+import { ScrollRestoration } from "react-router";
 //add errorElements
 
 
@@ -29,6 +30,7 @@ function NavLayout() {
     <>
       <NavBar />
       <Outlet />
+      <ScrollRestoration />
     </>
   )
 }

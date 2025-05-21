@@ -84,7 +84,7 @@ export function FavoriteProvider({ children }: { children: React.ReactNode }) {
   )
 }
 
-export function useFavorites() {
+export function useFavoritesContext() {
   const context = useContext(FavoriteContext)
 
   if (!context) {

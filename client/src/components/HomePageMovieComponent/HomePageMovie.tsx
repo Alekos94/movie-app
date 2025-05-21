@@ -3,8 +3,10 @@ import { FavoriteMovie, GeneralMovie } from "../../types/Movies"
 import { defineRatingColor } from "../../utils/defineRatingColor"
 import { formatRating } from "../../utils/formatRating"
 import "./HomePageMovie.css"
-import { FaRegHeart, FaHeart } from "react-icons/fa"
-import { useFavorites } from "../../contexes/FavoritesContext"
+import { FaRegHeart, FaHeart, FaRegBookmark , FaBookmark } from "react-icons/fa"
+import { useFavoritesContext } from "../../contexes/FavoritesContext"
+import { useUserContext } from "../../contexes/UserContext"
+import { useWatchListContext } from "../../contexes/WatchListContext"
 
 export function HomePageMovie({
   title,
@@ -17,8 +19,10 @@ export function HomePageMovie({
 }: GeneralMovie) {
   const ratingColor = defineRatingColor(formatRating(vote_average))
   const navigate = useNavigate()
-  const { favorites, toggleFavorite } = useFavorites()
-  
+  const { favorites, toggleFavorite } = useFavoritesContext()
+  const {watchList, toggleWatchList} = useWatchListContext()
+  const {user} = useUserContext()
+
   const movie: FavoriteMovie = {
     title: title,
     overview: overview,
@@ -30,7 +34,7 @@ export function HomePageMovie({
     poster_path: poster_path,
   }
   const isFavorite = favorites.some((favorite) => favorite.tmdb_id === id)
-
+  const isWatchList = watchList.some((watchListMovie) => watchListMovie.tmdb_id === id)
   return (
     <>
     <div onClick={() => navigate(`movie/${id}`, {})} className="movieContainer">
@@ -46,7 +50,7 @@ export function HomePageMovie({
     </div>
     <div>
 
-      {isFavorite ? (
+      {user && (isFavorite ? (
         <div onClick={() => toggleFavorite(movie)}>
           <FaHeart className="heart" />
         </div>
@@ -54,7 +58,16 @@ export function HomePageMovie({
         <div onClick={() => toggleFavorite(movie)}>
           <FaRegHeart className="heart" />
         </div>
-      )}
+      ))}
+      {user && (isWatchList ? (
+        <div onClick={() => toggleWatchList(movie)}>
+          <FaBookmark className="heart" />
+        </div>
+      ) : (
+        <div onClick={() => toggleWatchList(movie)}>
+          <FaRegBookmark className="heart" />
+        </div>
+      ))}
     </div>
     </>
   )
