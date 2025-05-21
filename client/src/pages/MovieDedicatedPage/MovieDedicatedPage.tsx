@@ -1,21 +1,20 @@
 import { LoaderFunctionArgs, useLoaderData } from "react-router"
 import { fetchMovieDetails } from "../../utils/fetchMovieListWithAuth"
-import { MovieDetails, FavoriteMovie } from "../../types/Movies"
+import { DetailedMovie, FavoriteMovie } from "../../types/Movies"
 import "./MovieDedicatedPage.css"
 import { useFavoritesContext } from "../../contexes/FavoritesContext"
 import { useWatchListContext } from "../../contexes/WatchListContext"
-import { useUserContext } from "../../contexes/UserContext"
 import { FaRegHeart, FaHeart, FaRegBookmark, FaBookmark } from "react-icons/fa"
 import { formatRating } from "../../utils/formatRating"
 import { defineRatingColor } from "../../utils/defineRatingColor"
 import { format } from "date-fns"
 
 export function MovieDeciatedPage() {
-  const movie = useLoaderData<MovieDetails>()
+  const movie = useLoaderData<DetailedMovie>()
   const backgroundImageUrl = `https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`
   const { favorites, toggleFavorite } = useFavoritesContext()
   const { watchList, toggleWatchList } = useWatchListContext()
-  // const { user } = useUserContext()
+
   const favoriteMovie: FavoriteMovie = {
     title: movie.title,
     overview: movie.overview,
@@ -29,8 +28,8 @@ export function MovieDeciatedPage() {
   const ratingColor = defineRatingColor(formatRating(movie.vote_average))
   const isFavorite = favorites.some((fav) => movie.id === fav.tmdb_id)
   const isWatchList = watchList.some((fav) => movie.id === fav.tmdb_id)
-  console.log(movie)
-  function formatDate(date: string) {
+
+  function formatReleaseYear(date: string) {
     return date.slice(0, 4)
   }
 
@@ -41,7 +40,7 @@ export function MovieDeciatedPage() {
   }
 
   const rawDate = movie.release_date
-  const formatted = format(new Date(rawDate), "dd/MM/yyyy")
+  const formattedFullDate = format(new Date(rawDate), "dd/MM/yyyy")
 
   return (
     <div className="movieDetails-wrapper">
@@ -58,11 +57,11 @@ export function MovieDeciatedPage() {
       <div className="movieDetails-info">
         <div className="movie-highLevel-info">
           <div className="movie-title">
-            {movie.title} <span>({formatDate(movie.release_date)})</span>
+            {movie.title} <span>({formatReleaseYear(movie.release_date)})</span>
           </div>
           <div className="movie-subtitle">
             <div>
-              {formatted} ({movie.origin_country[0]}) -
+              {formattedFullDate} ({movie.origin_country[0]}) -
             </div>
             <div>{movie.genres.map((genre) => genre.name).join(", ")} -</div>
             <div className="movie-duration">{formatRuntime(movie.runtime)}</div>
@@ -133,7 +132,7 @@ export async function MovieDedicatedPageLoader({
     throw new Response("Failed to fetch movie details", { status: 502 })
   }
 
-  const movie = (await movieRes.json()) as MovieDetails
+  const movie = (await movieRes.json()) as DetailedMovie
 
   if (!movie.id) {
     throw new Response("Movie not found", { status: 404 })

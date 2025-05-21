@@ -1,0 +1,65 @@
+.search-page-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.search-results {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 3rem;
+}
+
+.searched-movie {
+  border: thin solid red;
+  display: flex;
+  gap: 1rem;
+  border-radius: 1rem;
+}
+
+.searched-movie-poster, .noPoster {
+  border-radius: 1rem;
+  width: 185px;
+  height: 278px;
+}
+
+.noPoster {
+  background-color: rgb(189, 186, 183);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.noPoster-icon {
+  width: 5em;
+  height: 5em;
+  color: rgb(48, 45, 43);
+}
+
+
+.searched-movie-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.page-summary {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 2rem;
+  align-self: center;
+}
+
+.page-info {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.left-arrow, .right-arrow {
+  display: flex;
+  align-items: center;
+}
+
+
+

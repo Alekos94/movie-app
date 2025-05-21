@@ -6,14 +6,16 @@ export type GeneralMovie = {
   genre_ids: number[]
   release_date: string
   poster_path: string
+  overview: string
 }
 
-export type MovieDetails = GeneralMovie & {origin_country: string[]
+export type DetailedMovie = GeneralMovie & {origin_country: string[]
   genres: {id:number, name: string}[]
   original_language: string
   overview: string
   runtime: number
   backdrop_path: string
+  tagline: string
 }
 
 export type FavoriteMovie = {
@@ -33,15 +35,4 @@ export type HomePageLoaderData = {
   upcomingMoviesList: GeneralMovie[];
 }
 
-// type List = {
-//   name: string
-//   movies: FavoriteMovie[]
-// }
-
-// export type User = {
-//   _id: string
-//   name: string
-//   surname: string
-//   email: string
-// }
 

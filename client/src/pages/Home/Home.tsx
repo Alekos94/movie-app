@@ -4,7 +4,7 @@ import { useLoaderData, useNavigate } from "react-router"
 import { fetchMovieListWithAuth } from "../../utils/fetchMovieListWithAuth"
 import { MovieList } from "../../components/MovieListComponent/MovieList"
 import { useRef} from "react"
-import { useFavorites } from "../../contexes/FavoritesContext"
+
 
 export function Home() {
 
@@ -18,7 +18,7 @@ export function Home() {
     e.preventDefault()
     if (searchTermRef.current !== null) {
       const query = searchTermRef.current.value.trim()
-      navigate(`search?movieSearch=${query}`)
+      navigate(`search?movieSearch=${query}&page=1`)
     }
   }
 

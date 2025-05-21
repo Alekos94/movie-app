@@ -24,11 +24,11 @@ export function fecthTvShowListWithAuth (endpoint:string, signal: AbortSignal) {
   })
 }
 
-export function fetchSearchResultWithAuth (searchKeyword: string, signal: AbortSignal) {
+export function fetchSearchResultWithAuth (searchKeyword: string, page: string, signal: AbortSignal) {
   const key: string = import.meta.env.VITE_SECRET
   const baseUrl: string = import.meta.env.VITE_BASEURL_MOVIE_SEARCH
 
-  return fetch(`${baseUrl}?query=${searchKeyword}`, {
+  return fetch(`${baseUrl}?query=${searchKeyword}&page=${page}`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${key}`,
