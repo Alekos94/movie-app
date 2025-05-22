@@ -9,17 +9,17 @@ type SearchResultPageLoaderData = {
   searchMovieResults: GeneralMovie[]
   currentPage: number
   total_pages: number
+  total_results: number
 }
 //Imrpovements
 //check how to import more than 20 results
 export function SearchResult() {
-  const { searchMovieResults, total_pages } =
+  const { searchMovieResults, total_pages, total_results } =
     useLoaderData() as SearchResultPageLoaderData
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams] = useSearchParams()
   const navigate = useNavigate()
   const page = Number(searchParams.get("page"))
   const query = searchParams.get("movieSearch")
-
   function navigateToNextPage() {
     navigate(`/search?movieSearch=${query}&page=${page + 1}`)
   }
@@ -28,18 +28,24 @@ export function SearchResult() {
     navigate(`/search?movieSearch=${query}&page=${page - 1}`)
   }
 
-  function navigateToParticularPage(page:number) {
+  function navigateToParticularPage(page: number) {
     navigate(`/search?movieSearch=${query}&page=${page}`)
   }
 
   return (
     <div className="search-page-wrapper">
+      <div className="result-summary">
+        <span>
+          Page <strong>{page}</strong> of {total_pages}
+        </span>{" "}
+        | <span>Total results: {total_results}</span>
+      </div>
       <div className="search-results">
         {searchMovieResults.map((movie) => (
           <SearchPageMovie key={movie.id} {...movie} />
         ))}
       </div>
-      <div className="page-summary">
+      <div className="page-breakdown">
         <button
           disabled={page === 1}
           onClick={navigateToPreviousPage}
@@ -89,12 +95,15 @@ export async function searchResultPageLoader({
       results: GeneralMovie[]
       page: number
       total_pages: number
+      total_results: number
     } = await moviesRes.json()
 
+    console.log(movieData)
     return {
       searchMovieResults: movieData.results,
       currentPage: movieData.page,
       total_pages: movieData.total_pages,
+      total_results: movieData.total_results,
     }
   } catch (e) {
     if (e instanceof Error) {

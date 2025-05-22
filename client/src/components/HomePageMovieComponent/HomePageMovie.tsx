@@ -36,39 +36,39 @@ export function HomePageMovie({
   const isFavorite = favorites.some((favorite) => favorite.tmdb_id === id)
   const isWatchList = watchList.some((watchListMovie) => watchListMovie.tmdb_id === id)
   return (
-    <>
-    <div onClick={() => navigate(`movie/${id}`, {})} className="movieContainer">
+    <div className="homePage-movie-wrapper">
+    <div className="movieContainer">
       <div className="moviePoster">
-        <img src={`https://image.tmdb.org/t/p/w185${poster_path}`} />
+        <img onClick={() => navigate(`movie/${id}`)} src={`https://image.tmdb.org/t/p/w185${poster_path}`} />
         <div className={`movieRating ${ratingColor}`}>
           <span className="rating">{formatRating(vote_average)}</span>
           <span className="percentageSymbol">%</span>
         </div>
       </div>
-      <div className="movieTitle">{title}</div>
+      <div onClick={() => navigate(`movie/${id}`)}  className="movieTitle">{title}</div>
       <div className="movieReleaseDate">{release_date}</div>
     </div>
-    <div>
+    <div className="icons">
 
       {user && (isFavorite ? (
-        <div onClick={() => toggleFavorite(movie)}>
-          <FaHeart className="heart" />
+        <div className='favorite-icon-wrapper'  onClick={() => toggleFavorite(movie)}>
+          <FaHeart className="heart-icon" />
         </div>
       ) : (
-        <div onClick={() => toggleFavorite(movie)}>
-          <FaRegHeart className="heart" />
+        <div className='favorite-icon-wrapper' onClick={() => toggleFavorite(movie)}>
+          <FaRegHeart className="heart-icon" />
         </div>
       ))}
       {user && (isWatchList ? (
-        <div onClick={() => toggleWatchList(movie)}>
-          <FaBookmark className="heart" />
+        <div className='watchList-icon-wrapper' onClick={() => toggleWatchList(movie)}>
+          <FaBookmark className="watchlist-icon" />
         </div>
       ) : (
-        <div onClick={() => toggleWatchList(movie)}>
-          <FaRegBookmark className="heart" />
+        <div className='watchList-icon-wrapper' onClick={() => toggleWatchList(movie)}>
+          <FaRegBookmark className="watchlist-icon" />
         </div>
       ))}
     </div>
-    </>
+    </div>
   )
 }

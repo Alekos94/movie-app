@@ -1,8 +1,11 @@
 
+.homePage-movie-wrapper {
+  position: relative;
+}
+
 .movieContainer {
   outline: none;
   border-radius: 0.3em;
-  cursor: pointer;
 }
 
 .moviePoster {
@@ -10,6 +13,7 @@
 }
 .moviePoster img {
   border-radius: 0.3em;
+  cursor: pointer;
 }
 
 .movieRating {
@@ -61,16 +65,16 @@
   font-size: 1rem;
   font-weight: 900;
   color: rgb(255, 252, 242);
+  cursor: pointer;
+}
+
+.movieTitle:hover {
+  color: rgb(245, 124, 0);
 }
 
 .movieReleaseDate {
   color: rgb(255, 252, 242);
 }
-
-.heart {
-  color: rgb(red, green, blue);
-}
-
 
 .movieList {
   overflow-x: auto;
@@ -89,4 +93,30 @@ height: 0.75rem;
 .movieList::-webkit-scrollbar-thumb {
   background-color: rgba(245, 124, 0, 0.8);
   border-radius: 100vw;
+}
+
+
+.icons {
+  display: flex;
+  gap:1em;
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+}
+
+.watchList-icon-wrapper, .favorite-icon-wrapper {
+  background-color: white;
+  height: 1.75em;
+  width: 1.75em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  padding: 0.2em;
+  border: thin solid rgba(245, 124, 0, 0.8);
+  cursor: pointer;
+}
+
+.watchlist-icon, .heart-icon {
+  color: rgba(245, 124, 0, 0.8);
 }

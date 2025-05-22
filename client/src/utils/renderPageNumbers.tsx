@@ -30,7 +30,7 @@ export function renderPageNumbers(page: number, total_pages: number, navigateToP
           <div
             key={p}
             className={p === page ? 'current-page' : 'page-number'}
-            onClick={() => navigateToParticularPage(p)}
+            onClick={p !== page ?() => navigateToParticularPage(p) : undefined}
           >
             {p}
           </div>
