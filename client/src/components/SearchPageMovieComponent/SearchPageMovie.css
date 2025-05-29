@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 
 .search-page-wrapper {
   display: flex;
@@ -7,37 +7,65 @@
 }
 
 .result-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
   padding-top: 1em;
   font-size: 1.5em;
   color: rgb(245, 124, 0);
 }
 
+.result-summary-perCategory {
+  display: flex;
+  gap: 2em;
+}
+
+.category {
+  min-width: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 99999px;
+  padding: 0.5rem;
+  border: 0.125rem solid rgb(64, 61, 57);
+  background-color: rgb(204, 197, 185);
+  color: rgb(64, 61, 57);
+}
+
+.category.active {
+  color: white;
+  background-color: rgb(245, 124, 0);
+  font-weight: 600;
+  border-color: white;
+}
 
 .search-results {
   display: flex;
   flex-direction: column;
   gap: 1.5em;
   padding: 3em;
-  
 }
 
-.searched-movie {
+.searched-movie, .searched-tvShow, .searched-person {
   display: flex;
   gap: 1em;
   border-radius: 1em;
   box-shadow: 0px 0px 10px 0px rgb(109, 107, 105);
   background-color: rgb(204, 197, 185);
+  height: 222px; /* match poster height */
 }
 
-.searched-movie:hover {
+.searched-movie:hover, .searched-tvShow:hover, .searched-person:hover {
   box-shadow: 0px 0px 10px 0px rgb(245, 124, 0);
 }
 
-.searched-movie-poster, .noPoster {
+.searched-movie-poster,
+.noPoster, .searched-tvShow-poster, .searched-person-poster {
   border-top-left-radius: 1em;
   border-bottom-left-radius: 1em;
   width: 148px;
-  height: 222px;;
+  height: 222px;
   cursor: pointer;
 }
 
@@ -56,25 +84,39 @@
   color: rgb(48, 45, 43);
 }
 
-
-.searched-movie-info {
+.searched-movie-info, .searched-tvShow-info, .searched-person-info{
   display: flex;
   flex-direction: column;
   gap: 2em;
+  overflow: auto; /* optional, prevents child overflow */
 }
 
-.searched-movie-title {
+.searched-movie-title, .searched-tvShow-title, .searched-person-title {
   font-size: 1.75em;
   font-weight: 600;
 }
 
-.searched-movie-releaseDate {
-  font-size: 0.5em;
-  font-weight:400;
+.originalTitle {
+ font-weight: 100;
 }
 
-.searched-movie-overview {
+.searched-movie-releaseDate, .searched-tvShow-releaseDate {
+  font-size: 0.5em;
+  font-weight: 400;
+}
+
+.searched-movie-overview, .searched-tvShow-overview, .searched-person-overview {
   font-size: 1.125em;
+}
+
+.searched-person-overview{
+  display: flex;
+  gap: 0.25rem;
+}
+
+.searched-person-known-for-media:hover {
+  color: rgb(245, 124, 0);
+  cursor: pointer;
 }
 
 .page-breakdown {
@@ -90,25 +132,29 @@
   gap: 0.5em;
 }
 
-.left-arrow, .right-arrow {
+.left-arrow,
+.right-arrow {
   display: flex;
   align-items: center;
   border: none;
   outline: none;
   background-color: rgb(64, 61, 57);
   color: rgb(245, 124, 0);
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
   font-size: 1em;
   font-weight: 600;
   cursor: pointer;
 }
 
-.left-arrow:disabled, .right-arrow:disabled {
+.left-arrow:disabled,
+.right-arrow:disabled {
   cursor: default;
   opacity: 0.5;
 }
 
-.seperator, .current-page, .page-number {
+.seperator,
+.current-page,
+.page-number {
   font-size: 1em;
   font-weight: 600;
   color: rgb(245, 124, 0);
@@ -124,8 +170,3 @@
   border-radius: 0.2em;
   background-color: rgb(240, 198, 157);
 }
-
-
-
-
-

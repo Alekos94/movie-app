@@ -1,9 +1,9 @@
-import { GeneralMovie } from "../../types/Movies";
+import {GeneralMediaType } from "../../types/Movies";
 import './SearchPageMovie.css'
 import { HiOutlinePhoto } from "react-icons/hi2";
 import { useNavigate } from "react-router";
 
-export function SearchPageMovie ({id, title, release_date, overview, poster_path}: GeneralMovie) {
+export function SearchPageMovie ({id, title, name, media_type, release_date, overview, poster_path}: GeneralMediaType) {
   const navigate = useNavigate()
   
   return (
@@ -11,7 +11,7 @@ export function SearchPageMovie ({id, title, release_date, overview, poster_path
       {poster_path ? <img onClick={() => navigate(`/movie/${id}`)}  className='searched-movie-poster' src={`https://image.tmdb.org/t/p/w185${poster_path}`}/> : <div onClick={() => navigate(`/movie/${id}`)} className="noPoster"><HiOutlinePhoto className="noPoster-icon"/></div>}
       <div className="searched-movie-info">
         <div className='searched-movie-title'>
-          {title}
+        {media_type === 'movie' ? title : name} ({media_type})
           <br/>
           <span className="searched-movie-releaseDate">{release_date}</span>
         </div>

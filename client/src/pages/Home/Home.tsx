@@ -18,7 +18,7 @@ export function Home() {
     e.preventDefault()
     if (searchTermRef.current !== null) {
       const query = searchTermRef.current.value.trim()
-      navigate(`search?movieSearch=${query}&page=1`)
+      navigate(`search?movieSearch=${query}&page=1&category=all`)
     }
   }
 
