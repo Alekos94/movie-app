@@ -42,6 +42,15 @@ export type SearchPagePersonType = {
   }[]
 }
 
+export type SearchPageMovieType = {
+  overview: string
+  id: number
+  title: string
+  poster_path: string
+  release_date: string
+  original_title: string
+}
+
 export type DetailedMovie = GeneralMovie & {origin_country: string[]
   genres: {id:number, name: string}[]
   original_language: string
