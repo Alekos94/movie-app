@@ -8,6 +8,8 @@ import { useNavigate } from "react-router";
 
 export function NavBar() {
   const [burgerClass, setBurgerClass] = useState(false)
+  const [moviesDropDown, setMoviesDropDown] = useState(false)
+  const [tvShowsDropDown, setTvShowsDropDown] = useState(false)
   const {user, setUser} = useUserContext()
   const navigate = useNavigate()
 
@@ -35,11 +37,23 @@ async function handleLogOut () {
           </div>
           </Link>
           <ul className="navLinks">
-            <li>
-              <a href="/movies">Movies</a>
+            <li onMouseEnter={() => setMoviesDropDown(true)}  onMouseLeave={() => setMoviesDropDown(false)}>
+              Movies
+              {moviesDropDown && (
+                <div className="dropDown-menu">
+                  <Link to='/movies/popular'>Popular</Link>
+                  <Link to='/movies/upcoming'>Upcoming</Link>
+                  <Link to='/movies/topRated'>Top Rated</Link>
+                  </div>)}
             </li>
-            <li>
-              <a href="/tvshows">TV Shows</a>
+            <li onMouseEnter={() => setTvShowsDropDown(true)}  onMouseLeave={() => setTvShowsDropDown(false)}>
+              TV Shows
+              {tvShowsDropDown && (
+                <div className="dropDown-menu">
+                  <Link to='/tvShows/popular'>Popular</Link>
+                  <Link to='/tvShows/onTv'>On TV</Link>
+                  <Link to='/tvShows/topRated'>Top Rated</Link>
+                  </div>)}
             </li>
           </ul>
         </div>
