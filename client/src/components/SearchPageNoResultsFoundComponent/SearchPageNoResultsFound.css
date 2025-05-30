@@ -1,0 +1,14 @@
+.noResults-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding-top: 3rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.noResult-message {
+  font-size: 3rem;
+  color: rgb(210, 100, 0);
+}
+

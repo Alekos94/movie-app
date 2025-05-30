@@ -40,6 +40,19 @@
   border-color: white;
 }
 
+.input-container {
+  width: 100%;
+}
+
+.input-container input {
+  font-size: 1.5rem;
+}
+
+.input-container button {
+  top: 0.05rem;
+  font-size: 1.5rem;  /* Same font size as input */
+}
+
 .search-results {
   display: flex;
   flex-direction: column;

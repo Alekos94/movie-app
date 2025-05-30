@@ -1,5 +1,4 @@
 import {SearchPageMovieType} from "../../types/Movies";
-import './SearchPageMovie.css'
 import { HiOutlinePhoto } from "react-icons/hi2";
 import { useNavigate } from "react-router";
 

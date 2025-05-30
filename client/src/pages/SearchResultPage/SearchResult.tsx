@@ -14,6 +14,9 @@ import { SearchPageTvShow } from "../../components/SearchPageTvShowComponent/Sea
 import { SearchPagePerson } from "../../components/SearchPagePersonComponent/SearchPagePerson"
 import { SearchPageGeneralMedia } from "../../components/SearchPageMediaComponent/SearchPageGeneralMedia"
 import './SearchPage.css'
+import { SearchPageNoResultsFound } from "../../components/SearchPageNoResultsFoundComponent/SearchPageNoResultsFound"
+import { SearchBar } from "../../components/SearchBarComponent/SearchBar"
+
 type SearchResultPageLoaderData = {
   searchResults: (
     | GeneralMediaType
@@ -32,29 +35,29 @@ export function SearchResult() {
   const [searchParams, setSearchParams] = useSearchParams()
   const navigate = useNavigate()
   const page = Number(searchParams.get("page"))
-  const query = searchParams.get("movieSearch")
+  const query = searchParams.get("mediaSearch")
   const category = searchParams.get("category")
 
   const [activeCategory, setActiveCategory] = useState(category)
-
+  console.log(searchResults)
   useEffect(() => {
     setActiveCategory(category)
   }, [category])
 
   function navigateToNextPage() {
     navigate(
-      `/search?movieSearch=${query}&page=${page + 1}&category=${category}`
+      `/search?mediaSearch=${query}&page=${page + 1}&category=${category}`
     )
   }
 
   function navigateToPreviousPage() {
     navigate(
-      `/search?movieSearch=${query}&page=${page - 1}&category=${category}`
+      `/search?mediaSearch=${query}&page=${page - 1}&category=${category}`
     )
   }
 
   function navigateToParticularPage(page: number) {
-    navigate(`/search?movieSearch=${query}&page=${page}&category=${category}`)
+    navigate(`/search?mediaSearch=${query}&page=${page}&category=${category}`)
   }
 
   function switchCategory(newCategory: string) {
@@ -65,6 +68,7 @@ export function SearchResult() {
   }
 
   return (
+    searchResults.length === 0 ? <SearchPageNoResultsFound searchKeyword={query!}/> : 
     <div className="search-page-wrapper">
       <div className="result-summary">
         <div className="highLevel-result-summary">
@@ -105,6 +109,7 @@ export function SearchResult() {
             People
           </div>
         </div>
+        <SearchBar searchKeyword={query!}/>
       </div>
       <div className="search-results">
         {activeCategory === "all" &&
@@ -147,7 +152,7 @@ export function SearchResult() {
           Next <HiOutlineArrowSmRight />
         </button>
       </div>
-    </div>
+    </div> 
   )
 }
 
@@ -157,7 +162,7 @@ export async function searchResultPageLoader({
   request: Request
 }) {
   const url = new URL(request.url)
-  const query = url.searchParams.get("movieSearch")
+  const query = url.searchParams.get("mediaSearch")
   const page = url.searchParams.get("page")
   const category = url.searchParams.get("category")
 
