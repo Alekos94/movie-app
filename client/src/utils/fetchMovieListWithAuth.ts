@@ -1,8 +1,8 @@
-export function fetchMovieListWithAuth (endpoint:string, signal: AbortSignal) {
+export function fetchMovieListWithAuth (endpoint:string, page: string, signal: AbortSignal) {
   const key: string = import.meta.env.VITE_SECRET
   const baseUrl: string = import.meta.env.VITE_BASEURL_MOVIE_LISTS
 
-  return fetch(`${baseUrl}${endpoint}`, {
+  return fetch(`${baseUrl}${endpoint}?page=${page}`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${key}`,
@@ -23,6 +23,7 @@ export function fecthTvShowListWithAuth (endpoint:string, signal: AbortSignal) {
     signal
   })
 }
+
 
 export function fetchSearchResultWithAuth (searchKeyword: string, page: string, category: string, signal: AbortSignal) {
   const key: string = import.meta.env.VITE_SECRET

@@ -43,7 +43,7 @@ async function handleLogOut () {
                 <div className="dropDown-menu">
                   <Link to='/movies/popular'>Popular</Link>
                   <Link to='/movies/upcoming'>Upcoming</Link>
-                  <Link to='/movies/topRated'>Top Rated</Link>
+                  <Link to='/movies/top_rated'>Top Rated</Link>
                   </div>)}
             </li>
             <li onMouseEnter={() => setTvShowsDropDown(true)}  onMouseLeave={() => setTvShowsDropDown(false)}>

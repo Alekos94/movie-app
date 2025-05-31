@@ -5,6 +5,7 @@
 
 .movieContainer {
   outline: none;
+  position:relative;
   border-radius: 0.3em;
 }
 

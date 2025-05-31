@@ -60,9 +60,9 @@ export function Home() {
 export async function homePageLoader({ request }: { request: Request }) {
   try {
     const [popularRes, upcomingRes, topRatedRes] = await Promise.all([
-      fetchMovieListWithAuth("popular", request.signal),
-      fetchMovieListWithAuth("upcoming", request.signal),
-      fetchMovieListWithAuth("top_rated", request.signal),
+      fetchMovieListWithAuth("popular", '1', request.signal),
+      fetchMovieListWithAuth("upcoming", '1', request.signal),
+      fetchMovieListWithAuth("top_rated", '1', request.signal),
     ])
 
     if (!popularRes.ok || !upcomingRes.ok || !topRatedRes.ok) {
