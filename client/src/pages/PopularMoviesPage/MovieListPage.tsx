@@ -9,7 +9,7 @@ export function MovieListPage() {
   const { category } = useParams()
   const [list, setList] = useState<GeneralMovie[]>([])
   const [page, setPage] = useState(1)
-
+//use a custom hook for this logic
   useEffect(() => {
     setList([])
     setPage(1)

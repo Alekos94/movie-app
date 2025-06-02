@@ -1,9 +1,9 @@
 import { createContext, useContext, useState, useEffect } from "react"
-import { FavoriteMovie } from "../types/Movies"
+import { FavoriteMediaItem} from "../types/Movies"
 
 type FavoriteContext = {
-  favorites: FavoriteMovie[]
-  toggleFavorite: (movie: FavoriteMovie) => Promise<void>
+  favorites: FavoriteMediaItem[]
+  toggleFavorite: (movie: FavoriteMediaItem) => Promise<void>
   loading: boolean
   error: string | null
 }
@@ -11,7 +11,7 @@ type FavoriteContext = {
 const FavoriteContext = createContext<FavoriteContext | null>(null)
 
 export function FavoriteProvider({ children }: { children: React.ReactNode }) {
-  const [favorites, setFavorites] = useState<FavoriteMovie[]>([])
+  const [favorites, setFavorites] = useState<FavoriteMediaItem[]>([])
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -44,7 +44,7 @@ export function FavoriteProvider({ children }: { children: React.ReactNode }) {
     fetchfavorites()
   }, [])
 
-  async function toggleFavorite(movie: FavoriteMovie) {
+  async function toggleFavorite(movie: FavoriteMediaItem) {
     const isFavorite = favorites.find((fav) => fav.tmdb_id === movie.tmdb_id)
     const previousFavorites = [...favorites]
     //update the UI to reflect the change immediately and make the app to feel more responsive.

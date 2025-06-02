@@ -73,10 +73,20 @@
 .movieList {
   display: flex;
   gap: 0.5em;
+  transition: opacity 1s ease-in-out;
+}
+
+
+.movieList.hidden {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
 }
 
 .list-title {
   font-size: 2.5rem;
-  color:rgb(204, 197, 185);
+  color:white;
+  border-left: 8px solid rgb(245, 124, 0);
+  padding-left: 1rem;
   font-weight: 600;
 }

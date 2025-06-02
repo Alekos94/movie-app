@@ -1,9 +1,9 @@
 import { createContext, useContext, useState, useEffect } from "react"
-import { FavoriteMovie } from "../types/Movies"
+import { WatchListMediaItem } from "../types/Movies"
 
 type WatchListContext = {
-  watchList: FavoriteMovie[]
-  toggleWatchList: (movie: FavoriteMovie) => Promise<void>
+  watchList: WatchListMediaItem[]
+  toggleWatchList: (movie: WatchListMediaItem) => Promise<void>
   loading: boolean
   error: string | null
 }
@@ -11,7 +11,7 @@ type WatchListContext = {
 const WatchListContext = createContext<WatchListContext | null>(null)
 
 export function WatchListProvider({ children }: { children: React.ReactNode }) {
-  const [watchList, setWatchList] = useState<FavoriteMovie[]>([])
+  const [watchList, setWatchList] = useState<WatchListMediaItem[]>([])
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -44,7 +44,7 @@ export function WatchListProvider({ children }: { children: React.ReactNode }) {
     fetchWatchList()
   }, [])
 
- async function toggleWatchList (movie: FavoriteMovie) {
+ async function toggleWatchList (movie: WatchListMediaItem) {
   const isWatchList = watchList.find((item) => item.tmdb_id === movie.tmdb_id)
   const previousWatchList = [...watchList]
 

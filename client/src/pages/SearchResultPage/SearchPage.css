@@ -31,6 +31,7 @@
   border: 0.125rem solid rgb(64, 61, 57);
   background-color: rgb(204, 197, 185);
   color: rgb(64, 61, 57);
+  cursor: pointer;
 }
 
 .category.active {
@@ -58,6 +59,7 @@
   flex-direction: column;
   gap: 1.5em;
   padding: 3em;
+  width: 100%;
 }
 
 .searched-generalMedia, .searched-movie, .searched-tvShow, .searched-person {

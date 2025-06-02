@@ -31,7 +31,7 @@ export function SearchPageTvShow({
           <br />
           <span className="searched-tvShow-releaseDate">{first_air_date}</span>
         </div>
-        <div className="searched-tvShow-overview"><strong>Overview</strong>: {overview}</div>
+        <div className="searched-tvShow-overview"><strong>Overview</strong>: {overview ? overview : 'Overview not available.'}</div>
       </div>
     </div>
   )

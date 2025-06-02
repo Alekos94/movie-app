@@ -29,6 +29,10 @@ const movieSchema = new mongoose.Schema ({
   poster_path: {
     type: String,
     required: true
+  },
+  media_type: {
+    type: String,
+    required: true
   }
 }, {_id: false})
 

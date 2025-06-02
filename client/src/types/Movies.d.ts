@@ -9,6 +9,17 @@ export type GeneralMovie = {
   overview: string
 }
 
+export type GeneralTvShow = {
+  name: string
+  overview: string
+  id: number
+  vote_average: number
+  genre_ids: number[]
+  first_air_date: string
+  poster_path: string
+  overview: string
+}
+
 export type GeneralMediaType = {
   title?: string
   name?: string
@@ -60,7 +71,7 @@ export type DetailedMovie = GeneralMovie & {origin_country: string[]
   tagline: string
 }
 
-export type FavoriteMovie = {
+export type FavoriteMediaItem = {
   title: string
   overview: string
   tmdb_id: number
@@ -69,12 +80,18 @@ export type FavoriteMovie = {
   release_date: string
   user_average: number | null
   poster_path: string
+  media_type: string
 }
+
+export type WatchListMediaItem = FavoriteMediaItem
 
 export type HomePageLoaderData = {
   topRatedMoviesList: GeneralMovie[];
   popularMoviesList: GeneralMovie[];
   upcomingMoviesList: GeneralMovie[];
+  topRatedTvShowsList: GeneralTvShow[];
+  popularTvShowsList: GeneralTvShow[];
+  upcomingTvShowsList: GeneralTvShow[];
 }
 
 

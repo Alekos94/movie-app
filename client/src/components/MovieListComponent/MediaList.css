@@ -1,0 +1,26 @@
+.media-selector {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.media-option {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.media-option.active {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgb(245, 124, 0);
+}
+
+.media-selector-icon {
+  font-size: 1.25rem;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

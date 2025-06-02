@@ -1,18 +1,28 @@
-import { GeneralMovie, HomePageLoaderData } from "../../types/Movies"
+import {
+  GeneralMovie,
+  GeneralTvShow,
+  HomePageLoaderData,
+} from "../../types/Movies"
 import "./Home.css"
 import { useLoaderData, useNavigate } from "react-router"
-import { fetchMovieListWithAuth } from "../../utils/fetchMovieListWithAuth"
-import { MovieList } from "../../components/MovieListComponent/MovieList"
-import { useRef} from "react"
-
+import {
+  fetchMovieListWithAuth,
+  fetchTvShowListWithAuth,
+} from "../../utils/fetchMovieListWithAuth"
+import { MediaList } from "../../components/MovieListComponent/MediaList"
+import { useRef } from "react"
 
 export function Home() {
-
   const searchTermRef = useRef<HTMLInputElement>(null)
   const navigate = useNavigate()
-
-  const { topRatedMoviesList, popularMoviesList, upcomingMoviesList } =
-    useLoaderData<HomePageLoaderData>()
+  const {
+    topRatedMoviesList,
+    popularMoviesList,
+    upcomingMoviesList,
+    topRatedTvShowsList,
+    popularTvShowsList,
+    upcomingTvShowsList,
+  } = useLoaderData<HomePageLoaderData>()
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -49,9 +59,21 @@ export function Home() {
         </form>
       </div>
       <div className="moviesList-container">
-        <MovieList title={"What's popular"} list={popularMoviesList} />
-        <MovieList title={"Coming Soon"} list={upcomingMoviesList} />
-        <MovieList title={"Must-Watch"} list={topRatedMoviesList} />
+        <MediaList
+          title={"What's popular"}
+          movieList={popularMoviesList}
+          tvShowList={popularTvShowsList}
+        />
+          <MediaList
+          title={"Must-Watch"}
+          movieList={topRatedMoviesList}
+          tvShowList={topRatedTvShowsList}
+        />
+        <MediaList
+          title={"Coming Soon"}
+          movieList={upcomingMoviesList}
+          tvShowList={upcomingTvShowsList}
+        />
       </div>
     </div>
   )
@@ -59,28 +81,69 @@ export function Home() {
 
 export async function homePageLoader({ request }: { request: Request }) {
   try {
-    const [popularRes, upcomingRes, topRatedRes] = await Promise.all([
-      fetchMovieListWithAuth("popular", '1', request.signal),
-      fetchMovieListWithAuth("upcoming", '1', request.signal),
-      fetchMovieListWithAuth("top_rated", '1', request.signal),
+    const [
+      popularMoviesRes,
+      upcomingMoviesRes,
+      topRatedMoviesRes,
+      popularTvShowsRes,
+      upcomingTvShowsRes,
+      topRatedTvShowsRes,
+    ] = await Promise.all([
+      fetchMovieListWithAuth("popular", "1", request.signal),
+      fetchMovieListWithAuth("upcoming", "1", request.signal),
+      fetchMovieListWithAuth("top_rated", "1", request.signal),
+      fetchTvShowListWithAuth("popular", "1", request.signal),
+      fetchTvShowListWithAuth("on_the_air", "1", request.signal),
+      fetchTvShowListWithAuth("top_rated", "1", request.signal),
     ])
 
-    if (!popularRes.ok || !upcomingRes.ok || !topRatedRes.ok) {
+    if (
+      !popularMoviesRes.ok ||
+      !upcomingMoviesRes.ok ||
+      !topRatedMoviesRes.ok
+    ) {
       throw new Error("Error with fetching the data")
     }
 
-    const [popularData, upcomingData, topRatedData]: {
+    if (
+      !popularTvShowsRes.ok ||
+      !upcomingTvShowsRes.ok ||
+      !topRatedTvShowsRes.ok
+    ) {
+      throw new Error("Error with fetching the data")
+    }
+
+    const [popularMoviesData, upcomingMoviesData, topRatedMoviesData]: {
       results: GeneralMovie[]
     }[] = await Promise.all([
-      popularRes.json(),
-      upcomingRes.json(),
-      topRatedRes.json(),
+      popularMoviesRes.json(),
+      upcomingMoviesRes.json(),
+      topRatedMoviesRes.json(),
     ])
 
-    const popularMoviesList = popularData.results
-    const upcomingMoviesList = upcomingData.results
-    const topRatedMoviesList = topRatedData.results
-    return { popularMoviesList, upcomingMoviesList, topRatedMoviesList }
+    const [popularTvShowsData, upcomingTvShowsData, topRatedTvShowsData]: {
+      results: GeneralTvShow[]
+    }[] = await Promise.all([
+      popularTvShowsRes.json(),
+      upcomingTvShowsRes.json(),
+      topRatedTvShowsRes.json(),
+    ])
+
+    const popularMoviesList = popularMoviesData.results
+    const upcomingMoviesList = upcomingMoviesData.results
+    const topRatedMoviesList = topRatedMoviesData.results
+    const popularTvShowsList = popularTvShowsData.results
+    const upcomingTvShowsList = upcomingTvShowsData.results
+    const topRatedTvShowsList = topRatedTvShowsData.results
+
+    return {
+      popularMoviesList,
+      upcomingMoviesList,
+      topRatedMoviesList,
+      popularTvShowsList,
+      upcomingTvShowsList,
+      topRatedTvShowsList,
+    }
   } catch (e) {
     if (e instanceof Error) {
       console.log(e.message)

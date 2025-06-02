@@ -11,7 +11,7 @@ export function fetchMovieListWithAuth (endpoint:string, page: string, signal: A
   })
 }
 
-export function fecthTvShowListWithAuth (endpoint:string, signal: AbortSignal) {
+export function fetchTvShowListWithAuth (endpoint:string, page: string, signal: AbortSignal) {
   const key: string = import.meta.env.VITE_SECRET
   const baseUrl: string = import.meta.env.VITE_BASEURL_TV_LISTS
 

@@ -22,8 +22,8 @@ export async function addFavoriteMovie(request: Request<{}, {}, Movie>, response
   try {
     if (request.user) {
       const {_id} = request.user
-      const {title,overview,tmdb_id,vote_average,genre_ids,release_date,user_average,poster_path} = request.body
-      const updatedUser = await Users.findOneAndUpdate({_id}, {$push: {favoriteMovies: {title,overview,tmdb_id,vote_average,genre_ids,release_date,user_average,poster_path}}}, {new:true})
+      const {title,overview,tmdb_id,vote_average,genre_ids,release_date,user_average,poster_path, media_type} = request.body
+      const updatedUser = await Users.findOneAndUpdate({_id}, {$push: {favoriteMovies: {title,overview,tmdb_id,vote_average,genre_ids,release_date,user_average,poster_path, media_type}}}, {new:true})
       response.status(201).json(updatedUser)
     } else {
       response.status(401).json({ error: "Unauthorized" });
@@ -71,8 +71,8 @@ export async function addWatchListMovie(request: Request<{}, {}, Movie>, respons
   try {
     if (request.user) {
       const {_id} = request.user
-      const {title,overview,tmdb_id,vote_average,genre_ids,release_date,user_average,poster_path} = request.body
-      const updatedUser = await Users.findOneAndUpdate({_id}, {$push: {watchList: {title,overview,tmdb_id,vote_average,genre_ids,release_date,user_average,poster_path}}}, {new:true})
+      const {title,overview,tmdb_id,vote_average,genre_ids,release_date,user_average,poster_path, media_type} = request.body
+      const updatedUser = await Users.findOneAndUpdate({_id}, {$push: {watchList: {title,overview,tmdb_id,vote_average,genre_ids,release_date,user_average,poster_path,media_type}}}, {new:true})
       response.status(201).json(updatedUser)
     } else {
       response.status(401).json({ error: "Unauthorized" });

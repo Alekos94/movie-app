@@ -15,7 +15,7 @@ export function SearchPageMovie ({id, title, release_date, overview, poster_path
           <span className="searched-movie-releaseDate">{release_date}</span>
         </div>
         <div className="searched-movie-overview">
-         Overview: {overview}
+         <strong>Overview:</strong> {overview ? overview : 'Overview not available.'}
         </div>
       </div>
     </div>

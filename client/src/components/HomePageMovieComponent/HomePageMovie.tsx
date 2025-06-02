@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router"
-import { FavoriteMovie, GeneralMovie } from "../../types/Movies"
+import { FavoriteMediaItem, GeneralMovie } from "../../types/Movies"
 import { defineRatingColor } from "../../utils/defineRatingColor"
 import { formatRating } from "../../utils/formatRating"
 import "./HomePageMovie.css"
@@ -23,7 +23,7 @@ export function HomePageMovie({
   const { watchList, toggleWatchList } = useWatchListContext()
   const { user } = useUserContext()
 
-  const movie: FavoriteMovie = {
+  const movie: FavoriteMediaItem= {
     title: title,
     overview: overview,
     tmdb_id: id,
@@ -32,6 +32,8 @@ export function HomePageMovie({
     release_date: release_date,
     user_average: null,
     poster_path: poster_path,
+    media_type: 'movie'
+
   }
   const isFavorite = favorites.some((favorite) => favorite.tmdb_id === id)
   const isWatchList = watchList.some(
