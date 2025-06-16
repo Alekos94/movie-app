@@ -9,7 +9,9 @@ import { MovieDeciatedPage, MovieDedicatedPageLoader } from "../pages/MovieDedic
 import { LoginPage} from "../pages/Login/LoginPage"
 import { RegisterPage } from "../pages/Register/RegisterPage"
 import { ScrollRestoration } from "react-router";
-import { MovieListPageLoader, MovieListPage } from "../pages/PopularMoviesPage/MovieListPage"
+import { MovieListPage } from "../pages/MovieListPage/MovieListPage"
+import { UserPage } from "../pages/User/UserpAGE"
+
 //add errorElements
 
 
@@ -18,6 +20,7 @@ export const router = createBrowserRouter([
     element: <NavLayout />,
     children: [
       { path: "/", element: <Home />, loader: homePageLoader },
+      {path: '/:user', element: <UserPage/>},
       {path: "/login", element: <LoginPage/>},
       {path: "/register", element: <RegisterPage/>},
       {path: "/search", element: <SearchResult />,loader: searchResultPageLoader},

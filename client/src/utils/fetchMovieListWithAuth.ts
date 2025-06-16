@@ -78,3 +78,30 @@ export function fetchMovieDetails (movieId: string, signal: AbortSignal) {
     signal
   })
 }
+
+
+export function fetchMovieRecommendations (movieId: string, signal: AbortSignal) {
+  const key: string = import.meta.env.VITE_SECRET
+  const baseUrl: string = import.meta.env.VITE_BASEURL_MOVIE_LISTS
+
+  return fetch(`${baseUrl}${movieId}/recommendations`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${key}`,
+    },
+    signal
+  })
+}
+
+export function fetchTvShowRecommendations (tvShowId: string, signal: AbortSignal) {
+  const key: string = import.meta.env.VITE_SECRET
+  const baseUrl: string = import.meta.env.VITE_BASEURL_TV_LISTS
+
+  return fetch(`${baseUrl}${tvShowId}/recommendations`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${key}`,
+    },
+    signal
+  })
+}

@@ -6,7 +6,7 @@ import { useFavoritesContext } from "../../contexes/FavoritesContext"
 import { useWatchListContext } from "../../contexes/WatchListContext"
 import { useUserContext } from "../../contexes/UserContext"
 import { FaRegHeart, FaHeart, FaRegBookmark, FaBookmark } from "react-icons/fa"
-
+import { HiOutlinePhoto } from "react-icons/hi2";
 export function HomePageTvShow({
   name,
   poster_path,
@@ -41,10 +41,11 @@ return (
   <div className="homePage-movie-wrapper">
         <div className="movieContainer">
           <div className="moviePoster">
-            <img
+            {poster_path ? <img
               onClick={() => navigate(`movie/${id}`)}
               src={`https://image.tmdb.org/t/p/w185${poster_path}`}
-            />
+            /> : <div onClick={() => navigate(`/movie/${id}`)} className="missingPoster"><HiOutlinePhoto className="missingPoster-icon"/></div>}}
+  
             <div className={`movieRating ${ratingColor}`}>
               <span className="rating">{formatRating(vote_average)}</span>
               <span className="percentageSymbol">%</span>

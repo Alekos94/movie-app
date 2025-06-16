@@ -4,6 +4,7 @@ type User = {
   name: string;
   surname: string;
   email: string;
+  _id:string
 };
 
 type UserContextType = {

@@ -6,6 +6,7 @@ import { Link } from "react-router";
 import { useUserContext } from "../../contexes/UserContext";
 import { useNavigate } from "react-router";
 
+
 export function NavBar() {
   const [burgerClass, setBurgerClass] = useState(false)
   const [moviesDropDown, setMoviesDropDown] = useState(false)
@@ -59,7 +60,7 @@ async function handleLogOut () {
         </div>
         {user ?  <div className="logOutSection">
           <button onClick={handleLogOut} className="btn logout-btn">Logout</button>
-          <button className="btn profile-btn">{user.name[0]}</button>
+          <Link to={`/${user._id}`} className="btn profile-btn">{user.name[0]}</Link>
         </div> : <div className="loginSection">
           <Link to='/register'>
           <button className="btn register-btn">Register</button>
