@@ -1,4 +1,4 @@
-import { fetchMovieListWithAuth } from "../../utils/fetchMovieListWithAuth"
+import { fetchMovieListWithAuth } from "../../utils/fetchMediaDataWithAuth"
 import { GeneralMovie } from "../../types/Movies"
 import { useParams } from "react-router"
 import { HomePageMovie } from "../../components/HomePageMovieComponent/HomePageMovie"
@@ -9,7 +9,7 @@ export function MovieListPage() {
   const { category } = useParams()
   const [list, setList] = useState<GeneralMovie[]>([])
   const [page, setPage] = useState(1)
-//use a custom hook for this logic
+  //use a custom hook for this logic
   useEffect(() => {
     setList([])
     setPage(1)
@@ -86,19 +86,17 @@ export function MovieListPage() {
       {category === "upcoming" && <div>Upcoming Movies</div>}
       {category === "top_rated" && <div>Top Rated Movies</div>}
       <div className="movies-page-container">
-        <div className="movies-page-filters">
-          
-        </div>
+        <div className="movies-page-filters"></div>
         <div className="movie-list">
           {list.map((movie) => (
             <HomePageMovie key={movie.id.toString()} {...movie} />
           ))}
-            <button
-              onClick={() => setPage((previousState) => previousState + 1)}
-              className="more-movies btn"
-            >
-              Load More
-            </button>
+          <button
+            onClick={() => setPage((previousState) => previousState + 1)}
+            className="more-movies btn"
+          >
+            Load More
+          </button>
         </div>
       </div>
     </div>

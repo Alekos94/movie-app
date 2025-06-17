@@ -1,5 +1,49 @@
+.userPage-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+.favorites-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.carousel-container {
+  background-color: red;
+  height: 500px;
+  width: 600px;
+  position: relative;
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+}
+
+.directionBtn {
+  position: absolute;
+  z-index: 2;
+}
+
+.back {
+  left: 0.5rem;
+}
+
+.forward {
+  right: 0.5rem;
+}
+
 .recommended-list {
-  display: flex; 
-  gap: 0.5rem;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); 
+  gap: 2rem;
+}
+
+
+
+.backgorund-carousel-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
 }

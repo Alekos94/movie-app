@@ -24,7 +24,6 @@ export function fetchTvShowListWithAuth (endpoint:string, page: string, signal: 
   })
 }
 
-
 export function fetchSearchResultWithAuth (searchKeyword: string, page: string, category: string, signal: AbortSignal) {
   const key: string = import.meta.env.VITE_SECRET
   if (category === 'all') {
@@ -71,6 +70,19 @@ export function fetchMovieDetails (movieId: string, signal: AbortSignal) {
   const baseUrl: string = import.meta.env.VITE_BASEURL_MOVIE_LISTS
 
   return fetch(`${baseUrl}${movieId}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${key}`,
+    },
+    signal
+  })
+}
+
+export function fetchTvShowDetails (tvShowId: string, signal: AbortSignal) {
+  const key: string = import.meta.env.VITE_SECRET
+  const baseUrl: string = import.meta.env.VITE_BASEURL_TV_LISTS
+
+  return fetch(`${baseUrl}${tvShowId}`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${key}`,

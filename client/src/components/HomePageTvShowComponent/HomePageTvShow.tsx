@@ -42,7 +42,7 @@ return (
         <div className="movieContainer">
           <div className="moviePoster">
             {poster_path ? <img
-              onClick={() => navigate(`movie/${id}`)}
+              onClick={() => navigate(`tvShow/${id}`)}
               src={`https://image.tmdb.org/t/p/w185${poster_path}`}
             /> : <div onClick={() => navigate(`/movie/${id}`)} className="missingPoster"><HiOutlinePhoto className="missingPoster-icon"/></div>}}
   

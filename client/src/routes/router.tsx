@@ -11,6 +11,7 @@ import { RegisterPage } from "../pages/Register/RegisterPage"
 import { ScrollRestoration } from "react-router";
 import { MovieListPage } from "../pages/MovieListPage/MovieListPage"
 import { UserPage } from "../pages/User/UserpAGE"
+import { TvShowDedicatedPage, TvShowDedicatedPageLoader } from "../pages/TvShowDedicatedPage/TvShowDedicatedPage"
 
 //add errorElements
 
@@ -25,7 +26,8 @@ export const router = createBrowserRouter([
       {path: "/register", element: <RegisterPage/>},
       {path: "/search", element: <SearchResult />,loader: searchResultPageLoader},
       {path: '/movie/:movieId', element: <MovieDeciatedPage/>, loader: MovieDedicatedPageLoader},
-      {path: '/movies/:category', element: <MovieListPage/>}
+      {path: '/movies/:category', element: <MovieListPage/>},
+      {path: '/tvShow/:tvShowId', element: <TvShowDedicatedPage/>, loader: TvShowDedicatedPageLoader}
     ],
   },
 ])

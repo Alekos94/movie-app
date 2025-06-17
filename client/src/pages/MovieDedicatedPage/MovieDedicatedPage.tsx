@@ -1,6 +1,6 @@
 import { LoaderFunctionArgs, useLoaderData } from "react-router"
-import { fetchMovieDetails } from "../../utils/fetchMovieListWithAuth"
-import { DetailedMovie, FavoriteMovie } from "../../types/Movies"
+import { fetchMovieDetails } from "../../utils/fetchMediaDataWithAuth"
+import { DetailedMovie, FavoriteMediaItem } from "../../types/Movies"
 import "./MovieDedicatedPage.css"
 import { useFavoritesContext } from "../../contexes/FavoritesContext"
 import { useWatchListContext } from "../../contexes/WatchListContext"
@@ -15,7 +15,7 @@ export function MovieDeciatedPage() {
   const { favorites, toggleFavorite } = useFavoritesContext()
   const { watchList, toggleWatchList } = useWatchListContext()
 
-  const favoriteMovie: FavoriteMovie = {
+  const favoriteMovie: FavoriteMediaItem= {
     title: movie.title,
     overview: movie.overview,
     tmdb_id: movie.id,
@@ -24,6 +24,7 @@ export function MovieDeciatedPage() {
     release_date: movie.release_date,
     user_average: null,
     poster_path: movie.poster_path,
+    media_type: 'movie'
   }
   const ratingColor = defineRatingColor(formatRating(movie.vote_average))
   const isFavorite = favorites.some((fav) => movie.id === fav.tmdb_id)

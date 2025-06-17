@@ -8,7 +8,7 @@ import { useLoaderData, useNavigate } from "react-router"
 import {
   fetchMovieListWithAuth,
   fetchTvShowListWithAuth,
-} from "../../utils/fetchMovieListWithAuth"
+} from "../../utils/fetchMediaDataWithAuth"
 import { MediaList } from "../../components/MovieListComponent/MediaList"
 import { useRef } from "react"
 
@@ -64,7 +64,7 @@ export function Home() {
           movieList={popularMoviesList}
           tvShowList={popularTvShowsList}
         />
-          <MediaList
+        <MediaList
           title={"Must-Watch"}
           movieList={topRatedMoviesList}
           tvShowList={topRatedTvShowsList}

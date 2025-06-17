@@ -6,7 +6,6 @@ export type GeneralMovie = {
   genre_ids: number[]
   release_date: string
   poster_path: string
-  overview: string
 }
 
 export type GeneralTvShow = {
@@ -17,7 +16,6 @@ export type GeneralTvShow = {
   genre_ids: number[]
   first_air_date: string
   poster_path: string
-  overview: string
 }
 
 export type GeneralMediaType = {
@@ -69,6 +67,17 @@ export type DetailedMovie = GeneralMovie & {origin_country: string[]
   runtime: number
   backdrop_path: string
   tagline: string
+}
+
+export type DetailedTvShow = GeneralTvShow & {
+  origin_country: string[]
+  genres: {id:number, name: string}[]
+  original_language: string
+  backdrop_path: string
+  seasons: {id:number}[]
+  type: string
+  tagline: string
+  status: string
 }
 
 export type FavoriteMediaItem = {

@@ -6,12 +6,13 @@ import { useEffect, useState } from "react"
 import {
   fetchTvShowRecommendations,
   fetchMovieRecommendations,
-} from "../../utils/fetchMovieListWithAuth"
+} from "../../utils/fetchMediaDataWithAuth"
 import { GeneralTvShow, GeneralMovie } from "../../types/Movies"
 import { HomePageMovie } from "../../components/HomePageMovieComponent/HomePageMovie"
 import { HomePageTvShow } from "../../components/HomePageTvShowComponent/HomePageTvShow"
 import "./UserPage.css"
 import { MdOutlineEmail } from "react-icons/md"
+import { CarouselComponent } from "../../components/CarouselComponent/CarouselComponent"
 
 export function UserPage() {
   const { user } = useUserContext()
@@ -24,8 +25,7 @@ export function UserPage() {
   >([])
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
-  console.log(selectedMedia)
-  console.log(recommendations)
+  //  add loading animation
   useEffect(() => {
     const controller = new AbortController()
     async function fetchRecommendation() {
@@ -80,7 +80,7 @@ export function UserPage() {
       setSelectedMediaType(media.media_type)
     }
   }
-
+  // fix issue with reload and login page
   if (!user) {
     return <Navigate to="/login" replace />
   }
@@ -101,29 +101,34 @@ export function UserPage() {
           <div className="userWatchList"> Watchlist ({watchList.length})</div>
         </div>
       </div>
-
-      <div>Reccomendations</div>
-      <div>
-        <select value={selectedMedia} onChange={handleSelectionChange}>
-          <option value="" disabled>
-            Choose from your favorites
-          </option>
-          {favorites.map((media) => (
-            <option key={media.tmdb_id} value={media.tmdb_id}>
-              {media.title}
+      <div className="media-container">
+        <div className="favorites-container">
+          <span>Your Favorite Selections</span>
+          <CarouselComponent list={favorites} />
+        </div>
+        <div className="recommendations-container">
+          <span>Recommendations: </span>
+          <select value={selectedMedia} onChange={handleSelectionChange}>
+            <option value="" disabled>
+              Choose from your favorites
             </option>
-          ))}
-        </select>
-      </div>
-      <div className="recommended-list">
-        {selectedMediaType === "movie" &&
-          recommendations.map((movie) => (
-            <HomePageMovie key={movie.id} {...movie} />
-          ))}
-        {selectedMediaType === "tvShow" &&
-          recommendations.map((tvShow) => (
-            <HomePageTvShow key={tvShow.id} {...tvShow} />
-          ))}
+            {favorites.map((media) => (
+              <option key={media.tmdb_id} value={media.tmdb_id}>
+                {media.title}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="recommended-list">
+          {selectedMediaType === "movie" &&
+            recommendations.map((movie) => (
+              <HomePageMovie key={movie.id} {...movie} />
+            ))}
+          {selectedMediaType === "tvShow" &&
+            recommendations.map((tvShow) => (
+              <HomePageTvShow key={tvShow.id} {...tvShow} />
+            ))}
+        </div>
       </div>
     </div>
   )

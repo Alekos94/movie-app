@@ -5,7 +5,7 @@ import {
   SearchPageMovieType,
   GeneralMediaType,
 } from "../../types/Movies"
-import { fetchSearchResultWithAuth } from "../../utils/fetchMovieListWithAuth"
+import { fetchSearchResultWithAuth } from "../../utils/fetchMediaDataWithAuth"
 import { SearchPageMovie } from "../../components/SearchPageMovieComponent/SearchPageMovie"
 import { HiOutlineArrowSmLeft, HiOutlineArrowSmRight } from "react-icons/hi"
 import { renderPageNumbers } from "../../utils/renderPageNumbers"
@@ -13,7 +13,7 @@ import { useState, useEffect } from "react"
 import { SearchPageTvShow } from "../../components/SearchPageTvShowComponent/SearchPageTvShow"
 import { SearchPagePerson } from "../../components/SearchPagePersonComponent/SearchPagePerson"
 import { SearchPageGeneralMedia } from "../../components/SearchPageMediaComponent/SearchPageGeneralMedia"
-import './SearchPage.css'
+import "./SearchPage.css"
 import { SearchPageNoResultsFound } from "../../components/SearchPageNoResultsFoundComponent/SearchPageNoResultsFound"
 import { SearchBar } from "../../components/SearchBarComponent/SearchBar"
 
@@ -67,8 +67,9 @@ export function SearchResult() {
     setSearchParams(searchParams)
   }
 
-  return (
-    searchResults.length === 0 ? <SearchPageNoResultsFound searchKeyword={query!}/> : 
+  return searchResults.length === 0 ? (
+    <SearchPageNoResultsFound searchKeyword={query!} />
+  ) : (
     <div className="search-page-wrapper">
       <div className="result-summary">
         <div className="highLevel-result-summary">
@@ -109,7 +110,7 @@ export function SearchResult() {
             People
           </div>
         </div>
-        <SearchBar searchKeyword={query!}/>
+        <SearchBar searchKeyword={query!} />
       </div>
       <div className="search-results">
         {activeCategory === "all" &&
@@ -120,7 +121,7 @@ export function SearchResult() {
               category={activeCategory}
             />
           ))}
-          {activeCategory === "movie" &&
+        {activeCategory === "movie" &&
           (searchResults as SearchPageMovieType[]).map((movie) => (
             <SearchPageMovie key={movie.id} {...movie} />
           ))}
@@ -152,7 +153,7 @@ export function SearchResult() {
           Next <HiOutlineArrowSmRight />
         </button>
       </div>
-    </div> 
+    </div>
   )
 }
 

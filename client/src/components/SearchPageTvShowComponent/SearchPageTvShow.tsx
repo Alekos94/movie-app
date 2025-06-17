@@ -16,12 +16,12 @@ export function SearchPageTvShow({
     <div className="searched-tvShow">
       {poster_path ? (
         <img
-          onClick={() => navigate(`/movie/${id}`)}
+          onClick={() => navigate(`/tvShow/${id}`)}
           className="searched-tvShow-poster"
           src={`https://image.tmdb.org/t/p/w185${poster_path}`}
         />
       ) : (
-        <div onClick={() => navigate(`/movie/${id}`)} className="noPoster">
+        <div onClick={() => navigate(`/tvShow/${id}`)} className="noPoster">
           <HiOutlinePhoto className="noPoster-icon" />
         </div>
       )}
