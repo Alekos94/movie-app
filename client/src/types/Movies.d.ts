@@ -103,4 +103,9 @@ export type HomePageLoaderData = {
   upcomingTvShowsList: GeneralTvShow[];
 }
 
+export type MediaGernes = {
+  id: number
+  name: string
+}
+
 

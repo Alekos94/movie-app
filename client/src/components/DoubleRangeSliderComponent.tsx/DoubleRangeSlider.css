@@ -1,0 +1,15 @@
+.range-values {
+  display: flex;
+  justify-content: space-between;
+}
+
+.range-filter-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.range-values {
+  color: white;
+  font-weight: 600;
+}

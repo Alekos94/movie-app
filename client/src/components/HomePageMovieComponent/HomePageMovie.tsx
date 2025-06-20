@@ -7,6 +7,7 @@ import { FaRegHeart, FaHeart, FaRegBookmark, FaBookmark } from "react-icons/fa"
 import { useFavoritesContext } from "../../contexes/FavoritesContext"
 import { useUserContext } from "../../contexes/UserContext"
 import { useWatchListContext } from "../../contexes/WatchListContext"
+import { HiOutlinePhoto } from "react-icons/hi2"
 
 export function HomePageMovie({
   title,
@@ -43,10 +44,10 @@ export function HomePageMovie({
     <div className="homePage-movie-wrapper">
       <div className="movieContainer">
         <div className="moviePoster">
-          <img
-            onClick={() => navigate(`movie/${id}`)}
+          {poster_path ? <img
+            onClick={() => navigate(`/movie/${id}`)}
             src={`https://image.tmdb.org/t/p/w185${poster_path}`}
-          />
+          /> : <div onClick={() => navigate(`/movie/${id}`)} className="no-poster"><HiOutlinePhoto className="noPoster-icon"/></div>}
           <div className={`movieRating ${ratingColor}`}>
             <span className="rating">{formatRating(vote_average)}</span>
             <span className="percentageSymbol">%</span>

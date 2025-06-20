@@ -1,0 +1,134 @@
+.media-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 2rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+
+
+.category-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: white;
+}
+
+.media-page-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 5rem;
+  width: 100%;
+}
+
+.media-page-filters {
+  flex-shrink: 0;
+ display: flex;
+ flex-direction: column;
+ gap: 1rem;
+width: 500px;
+padding: 1rem;
+ background-color: rgb(64, 61, 57);;
+border-radius: 0.5rem;
+align-self: flex-start;
+border: thin solid rgb(204, 197, 185);
+box-shadow: 0 0 3px 0 rgb(240, 226, 202);
+}
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: white;
+  background-color: rgb(64, 61, 57);;
+  border-top-right-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+}
+.filter-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: white;
+}
+
+.media-list {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); 
+  gap: 2rem;
+  min-height: 500px;
+  /* min-width: 1000px; */
+}
+
+.loading-spinner {
+  margin-top: 40px;
+  font-size: 1.5rem;
+}
+
+
+.genre-filters,.runtime-filters,.userScore-filters {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.genres-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem
+}
+
+.genre {
+  border-radius: 999999px;
+  background-color: white;
+  border: thin solid white;
+  padding: 0.2rem 0.4rem;
+}
+
+.genre.selected {
+  background-color: rgb(245, 124, 0);
+  color: white;
+}
+
+.genre:hover {
+  cursor: pointer;
+  background-color: rgb(245, 124, 0);
+  color: white;
+}
+
+.more-media {
+  grid-column: 1 / -1;
+ width: 100%;
+ max-height: 50px;
+}
+
+.media-loader-wrapper {
+  grid-column: 1 / -1; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 500px; /
+}
+
+.noSearchMatch {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  gap: 1rem;
+  font-size: 2rem;
+  color: rgb(245, 124, 0);
+}
+
+.filterSearch:not(:disabled):hover,.more-media:hover {
+  background-color: rgb(245, 124, 0);
+  color: white;
+}
+
+.filterSearch:not(:disabled):active,.more-media:active {
+  background-color: rgb(180, 85, 0);;
+  font-weight: 600;
+}

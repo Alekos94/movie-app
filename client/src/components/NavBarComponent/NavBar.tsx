@@ -52,8 +52,8 @@ async function handleLogOut () {
               {tvShowsDropDown && (
                 <div className="dropDown-menu">
                   <Link to='/tvShows/popular'>Popular</Link>
-                  <Link to='/tvShows/onTv'>On TV</Link>
-                  <Link to='/tvShows/topRated'>Top Rated</Link>
+                  <Link to='/tvShows/on_the_air'>On TV</Link>
+                  <Link to='/tvShows/top_rated'>Top Rated</Link>
                   </div>)}
             </li>
           </ul>

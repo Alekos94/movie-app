@@ -9,7 +9,7 @@ import { MovieDeciatedPage, MovieDedicatedPageLoader } from "../pages/MovieDedic
 import { LoginPage} from "../pages/Login/LoginPage"
 import { RegisterPage } from "../pages/Register/RegisterPage"
 import { ScrollRestoration } from "react-router";
-import { MovieListPage } from "../pages/MovieListPage/MovieListPage"
+import { MovieListPage, MediaListPageLoader } from "../pages/MovieListPage/MediaListPage"
 import { UserPage } from "../pages/User/UserpAGE"
 import { TvShowDedicatedPage, TvShowDedicatedPageLoader } from "../pages/TvShowDedicatedPage/TvShowDedicatedPage"
 
@@ -26,7 +26,7 @@ export const router = createBrowserRouter([
       {path: "/register", element: <RegisterPage/>},
       {path: "/search", element: <SearchResult />,loader: searchResultPageLoader},
       {path: '/movie/:movieId', element: <MovieDeciatedPage/>, loader: MovieDedicatedPageLoader},
-      {path: '/movies/:category', element: <MovieListPage/>},
+      {path: '/:mediaType/:category', element: <MovieListPage/>, loader: MediaListPageLoader},
       {path: '/tvShow/:tvShowId', element: <TvShowDedicatedPage/>, loader: TvShowDedicatedPageLoader}
     ],
   },
